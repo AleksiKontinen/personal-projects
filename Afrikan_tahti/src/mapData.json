@@ -1,0 +1,538 @@
+[
+    {
+        "from": "Tangier",
+        "to": "Morocco",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "Tangier",
+        "to": "Canary Islands",
+        "type": "sea",
+        "distance": 2
+    },
+    {
+        "from": "Tangier",
+        "to": "Tunis",
+        "type": "road",
+        "distance": 4
+    },
+    {
+        "from": "Tangier",
+        "to": "Tunis",
+        "type": "sea",
+        "distance": 2
+    },
+    {
+        "from": "Morocco",
+        "to": "Sahara",
+        "type": "road",
+        "distance": 4
+    },
+    {
+        "from": "Morocco",
+        "to": "Cape Verde",
+        "type": "road",
+        "distance": 7
+    },
+    {
+        "from": "Canary Islands",
+        "to": "Cape Verde",
+        "type": "sea",
+        "distance": 4
+    },
+    {
+        "from": "Cape Verde",
+        "to": "Sierra Leone",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Cape Verde",
+        "to": "fork2",
+        "type": "sea",
+        "distance": 1
+    },
+    {
+        "from": "Sierra Leone",
+        "to": "fork1",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "fork1",
+        "to": "Gold Coast",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "fork1",
+        "to": "Timbuktu",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "Sierra Leone",
+        "to": "Gold Coast",
+        "type": "sea",
+        "distance": 4
+    },
+    {
+        "from": "Timbuktu",
+        "to": "Slave Coast",
+        "type": "road",
+        "distance": 4
+    },
+    {
+        "from": "Gold Coast",
+        "to": "fork3",
+        "type": "sea",
+        "distance": 2
+    },
+    {
+        "from": "fork3",
+        "to": "Slave Coast",
+        "type": "Sea",
+        "distance": 0
+    },
+    {
+        "from": "fork3",
+        "to": "Congo",
+        "type": "sea",
+        "distance": 3
+    },
+    {
+        "from": "Slave Coast",
+        "to": "fork4",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "fork4",
+        "to": "Ain Galaka",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "fork4",
+        "to": "Kandjama",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "fork4",
+        "to": "Darfur",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Ain Galaka",
+        "to": "Darfur",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Sahara",
+        "to": "Bandit1",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "Bandit1",
+        "to": "Darfur",
+        "type": "road",
+        "distance": 5
+    },
+    {
+        "from": "Tunis",
+        "to": "Tripoli",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "Tunis",
+        "to": "fork5",
+        "type": "sea",
+        "distance": 1
+    },
+    {
+        "from": "fork5",
+        "to": "Tripoli",
+        "type": "sea",
+        "distance": 0
+    },
+    {
+        "from": "fork5",
+        "to": "Cairo",
+        "type": "sea",
+        "distance": 2
+    },
+    {
+        "from": "Cairo",
+        "to": "Egypt",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Tripoli",
+        "to": "Egypt",
+        "type": "road",
+        "distance": 5
+    },
+    {
+        "from": "Cairo",
+        "to": "Suakin",
+        "type": "sea",
+        "distance": 3
+    },
+    {
+        "from": "Egypt",
+        "to": "Darfur",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "Darfur",
+        "to": "Suakin",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Darfur",
+        "to": "Bahr el Ghazal",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "Bahr el Ghazal",
+        "to": "Lake Victoria",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "Suakin",
+        "to": "Cape Guardafui",
+        "type": "sea",
+        "distance": 4
+    },
+    {
+        "from": "Suakin",
+        "to": "Addis Ababa",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "Addis Ababa",
+        "to": "Cape Guardafui",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "Cape Guardafui",
+        "to": "Dares Salaam",
+        "type": "road",
+        "distance": 5
+    },
+    {
+        "from": "Lake Victoria",
+        "to": "Ocombo",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Addis Ababa",
+        "to": "Lake Victoria",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "Lake Victoria",
+        "to": "fork6",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "fork6",
+        "to": "Dares Salaam",
+        "type": "road",
+        "distance": 0
+    },
+    {
+        "from": "fork6",
+        "to": "Mozambique",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "Kandjama",
+        "to": "Congo",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "Ocombo",
+        "to": "Congo",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Congo",
+        "to": "fork7",
+        "type": "road",
+        "distance": 7
+    },
+    {
+        "from": "fork7",
+        "to": "Mozambique",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "fork7",
+        "to": "fork8",
+        "type": "road",
+        "distance": 0
+    },
+    {
+        "from": "fork8",
+        "to": "Victoria Falls",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "fork8",
+        "to": "Dragon Mountain",
+        "type": "road",
+        "distance": 1
+    },
+    {
+        "from": "Dragon Mountain",
+        "to": "Victoria Falls",
+        "type": "road",
+        "distance": 2
+    },
+    {
+        "from": "Victoria Falls",
+        "to": "Whalefish bay",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Whalefish bay",
+        "to": "Cape Town",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Cape Guardafui",
+        "to": "Tamatave",
+        "type": "sea",
+        "distance": 7
+    },
+    {
+        "from": "Cape Guardafui",
+        "to": "Mozambique",
+        "type": "sea",
+        "distance": 7
+    },
+    {
+        "from": "Mozambique",
+        "to": "Cape st Marie",
+        "type": "sea",
+        "distance": 2
+    },
+    {
+        "from": "Tamatave",
+        "to": "Cape st Marie",
+        "type": "road",
+        "distance": 3
+    },
+    {
+        "from": "Cape st Marie",
+        "to": "Cape Town",
+        "type": "sea",
+        "distance": 7
+    },
+    {
+        "from": "Congo",
+        "to": "Whalefish bay",
+        "type": "sea",
+        "distance": 4 
+    },
+    {
+        "from": "Whalefish bay",
+        "to": "fork9",
+        "type": "sea",
+        "distance": 2
+    },
+    {
+        "from": "fork9",
+        "to": "Cape Town",
+        "type": "sea",
+        "distance": 1
+    },
+    {
+        "from": "fork9",
+        "to": "bandit2",
+        "type": "sea",
+        "distance": 6
+    },
+    {
+        "from": "Bandit2",
+        "to": "st Helena",
+        "type": "sea",
+        "distance": 0
+    },
+    {
+        "from": "st Helena",
+        "to": "bandit3",
+        "type": "sea",
+        "distance": 0
+    },
+    {
+        "from": "bandit3",
+        "to": "fork2",
+        "type": "sea",
+        "distance": 7
+    },
+    {
+        "from": "Tangier",
+        "to": "Morocco",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Tangier",
+        "to": "Tripoli",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Morocco",
+        "to": "Sierra Leone",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Morocco",
+        "to": "Gold Coast",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Tripoli",
+        "to": "Gold Coast",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Tripoli",
+        "to": "Darfur",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Cairo",
+        "to": "Suakin",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Suakin",
+        "to": "Darfur",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Darfur",
+        "to": "Ocombo",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Gold Coast",
+        "to": "Congo",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Gold Coast",
+        "to": "Whalefish bay",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Sierra Leone",
+        "to": "st Helena",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "st Helena",
+        "to": "Cape Town",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Ocombo",
+        "to": "Cape Town",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Congo",
+        "to": "Whalefish bay",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Suakin",
+        "to": "Lake Victoria",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Lake Victoria",
+        "to": "Cape Guardafui",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Cape Guardafui",
+        "to": "Tamatave",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Lake Victoria",
+        "to": "Dragon Mountain",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Tamatave",
+        "to": "Cape Town",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Cape st Marie",
+        "to": "Cape Town",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Dragon Mountain",
+        "to": "Cape Town",
+        "type": "air",
+        "distance": 0
+    },
+    {
+        "from": "Whalefish bay",
+        "to": "Cape Town",
+        "type": "air",
+        "distance": 0
+    }
+
+
+]
