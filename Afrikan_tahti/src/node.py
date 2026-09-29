@@ -8,11 +8,10 @@ class Node:
     name: str
     token: str = ''
     type: int = 0  # 0 = ground, 1 = sea, 3 = city
-    value: int = 0  # For cities this is 1 if it has a token, 0 if empty.
-    nearValue: int = 0  # For cities this is the number of neighboring tokens.
-    heat: int = 0  # For cities this is the sum direct heat and indirect heat from neighbors.
+    distValue: int = 0  # represent the value of the node, used for pathfinding and scoring
+    heatValue: int = 0  # Reflects how many players are in the vicinity
     neighbors: List[tuple[int, int, int]] = field(default_factory=list)
-
+    distToStart: int = 0  # Distance to the starting node, used for pathfinding
     def __post_init__(self) -> None:
         if self.type not in (0, 1, 3):
             raise ValueError("type must be 0 (ground), 1 (sea), or 3 (city)")
@@ -26,11 +25,6 @@ class Node:
         if neighbor not in self.neighbors:
             self.neighbors.append(neighbor)
 
-    def remove_neighbor(self, neighbor_id: int, route: int | None = None) -> None:
-        if route is None:
-            self.neighbors = [n for n in self.neighbors if n[0] != neighbor_id]
-        else:
-            self.neighbors = [n for n in self.neighbors if not (n[0] == neighbor_id and n[1] == route)]
 
     def neighbors_of_type(self, nodes: Dict[int, "Node"], type_: int) -> List[int]:
         return [nid for nid, _, _ in self.neighbors if nid in nodes and nodes[nid].type == type_]

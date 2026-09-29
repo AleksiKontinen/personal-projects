@@ -1,6 +1,7 @@
 import heapq
 import json
 import re
+from collections import deque
 from pathlib import Path
 import random
 from typing import List, Dict
@@ -9,6 +10,8 @@ from node import Node
 
 
 class Board:
+    STARTING_CITY_NAMES = ("Tangier", "Cairo")
+
     def __init__(self):
         # Define nodes and their connections (Graph)
         self.nodes: Dict[int, Node] = {}
@@ -22,10 +25,8 @@ class Board:
         self._next_node_id += 1
         return node_id
 
-    def create_node(self, node_id: int, name: str, token: str = '', type: int = 0,
-                    value: int = 0, nearValue: int = 0, heat: int = 0) -> Node:
-        node = Node(id=node_id, name=name, token=token, type=type,
-                    value=value, nearValue=nearValue, heat=heat)
+    def create_node(self, node_id: int, name: str, token: str = '', type: int = 0) -> Node:
+        node = Node(id=node_id, name=name, token=token, type=type)
         self.add_node(node)
         return node
 
@@ -108,6 +109,18 @@ class Board:
             else:
                 self._attach_segment_nodes(source, destination, route, distance)
 
+    def setup(self, map_file: str | Path | None = None) -> None:
+        map_path = Path(map_file) if map_file is not None else Path(__file__).with_name("mapData.json")
+        self.load_map_from_json(map_path)
+        self.reset_tokens()
+
+        starting_nodes = [self.get_node_by_name(name) for name in self.STARTING_CITY_NAMES]
+        if any(node is None for node in starting_nodes):
+            raise ValueError("The map must contain both 'Tangier' and 'Cairo' starting nodes")
+
+        self.apply(self.get_nodes_with_tokens(), "distValue")
+        self.apply(starting_nodes, "distToStart")
+
     def _attach_segment_nodes(self, source: Node, destination: Node, route: int, distance: int) -> None:
         if distance <= 0:
             source.add_neighbor(destination.id, route, 0)
@@ -138,25 +151,34 @@ class Board:
         ]
 
         city_nodes = [node for node in self.nodes.values() if node.type == 3]
+        starting_city_names = set(self.STARTING_CITY_NAMES)
+        for node in city_nodes:
+            if node.name in starting_city_names:
+                node.token = ''
+
+        token_nodes = [node for node in city_nodes if node.name not in starting_city_names]
         tokens: List[str] = []
         for token_name, count in token_counts:
             tokens.extend([token_name] * count)
 
-        if len(tokens) < len(city_nodes):
-            tokens.extend(["Blank"] * (len(city_nodes) - len(tokens)))
-        elif len(tokens) > len(city_nodes):
-            tokens = tokens[: len(city_nodes)]
+        if len(tokens) < len(token_nodes):
+            tokens.extend(["Blank"] * (len(token_nodes) - len(tokens)))
+        elif len(tokens) > len(token_nodes):
+            tokens = tokens[: len(token_nodes)]
 
         random.shuffle(tokens)
         self.available_tokens = list(tokens)
         self.tokens = {}
 
-        for node, token in zip(city_nodes, tokens):
+        for node, token in zip(token_nodes, tokens):
             node.token = token
             self.tokens[node.name] = token
 
     def get_available_tokens(self) -> List[str]:
         return list(self.available_tokens)
+
+    def get_nodes_with_tokens(self) -> List[Node]:
+        return [node for node in self.nodes.values() if node.type == 3 and node.token]
 
     def token_value(self) -> float:
         total = len(self.available_tokens)
@@ -190,61 +212,44 @@ class Board:
 
         return token
 
-    def heat_up(self, node_id: int) -> None:
-        node = self.get_node_by_id(node_id)
-        if node is None:
-            return
-        node.heat += 10
+    def strip_value(self, effect_type: str) -> None:
+        if effect_type not in ("heatValue", "distValue","distToStart"):
+            raise ValueError("effect_type must be 'heatValue' or 'distValue' or 'distToStart'")
 
-    def find_closest_token_paths(self, start_id: int, target_count: int) -> List[List[tuple[Node, int | None]]]:
-        start = self.get_node_by_id(start_id)
-        if start is None or target_count <= 0:
-            return []
+        for node in self.nodes.values():
+            setattr(node, effect_type, 0)
 
-        def is_token_city(node: Node) -> bool:
-            return node.type == 3 and node.token
+    def apply(self, start_nodes: List[Node], effect_type: str) -> None:
+        if effect_type not in ("heatValue", "distValue", "distToStart"):
+            raise ValueError("effect_type must be 'heatValue' or 'distValue' or 'distToStart'")
 
-        def route_weight(route: int) -> int:
-            if route == 0:
-                return 1
-            if route == 1:
-                return 2
-            if route == 3:
-                return 5
-            return 1
+        self.strip_value(effect_type)
+        visited = set()
+        queue = deque()
 
-        paths: List[List[tuple[Node, int | None]]] = []
-        visited: Dict[int, int] = {}
-        queue: List[tuple[int, int, List[tuple[Node, int | None]]]] = []
+        for start_node in start_nodes:
+            node = self.nodes.get(start_node.id)
+            if node is None:
+                raise ValueError(f"Start node {start_node.id} is not on this board")
+            if node.id not in visited:
+                visited.add(node.id)
+                queue.append(node)
 
-        heapq.heappush(queue, (0, start.id, [(start, None)]))
-        visited[start.id] = 0
+        while queue:
+            node = queue.popleft()
+            next_value = getattr(node, effect_type) + 1
 
-        while queue and len(paths) < target_count:
-            cost, node_id, path = heapq.heappop(queue)
-            if visited.get(node_id, float('inf')) < cost:
-                continue
-
-            current = self.get_node_by_id(node_id)
-            if current is None:
-                continue
-
-            if node_id != start_id and is_token_city(current):
-                paths.append(path)
-                continue
-
-            for neighbor_id, route, edge_distance in current.neighbors:
-                if edge_distance != 0:
+            for neighbor_id, route, _ in node.neighbors:
+                if route == 3:
+                    continue
+                neighbor = self.nodes.get(neighbor_id)
+                if neighbor is None or neighbor.id in visited:
                     continue
 
-                neighbor = self.get_node_by_id(neighbor_id)
-                if neighbor is None:
-                    continue
+                setattr(neighbor, effect_type, next_value)
+                visited.add(neighbor.id)
+                queue.append(neighbor)
 
-                new_cost = cost + route_weight(route)
-                if new_cost < visited.get(neighbor_id, float('inf')):
-                    visited[neighbor_id] = new_cost
-                    new_path = path + [(neighbor, route)]
-                    heapq.heappush(queue, (new_cost, neighbor_id, new_path))
+   
 
-        return paths
+    
