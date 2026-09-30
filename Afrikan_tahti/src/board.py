@@ -38,6 +38,24 @@ class Board:
     def get_node_by_id(self, node_id: int) -> Node | None:
         return self.nodes.get(node_id)
 
+    def move_data(self, id: int) -> List[List[int]]:
+        node = self.get_node_by_id(id)
+        if node is None:
+            return []
+
+        choices = []
+        for neighbor_id, route, _ in node.neighbors:
+            neighbor = self.get_node_by_id(neighbor_id)
+            if neighbor is not None:
+                choices.append([
+                    neighbor.id,
+                    neighbor.distValue,
+                    neighbor.heatValue,
+                    neighbor.distToStart,
+                    route,
+                ])
+        return choices
+
     def get_node_by_name(self, name: str) -> Node | None:
         for node in self.nodes.values():
             if node.name == name:
