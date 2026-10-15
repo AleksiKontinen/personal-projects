@@ -237,13 +237,14 @@ class Board:
         for node in self.nodes.values():
             setattr(node, effect_type, 0)
 
-    def apply(self, start_nodes: List[Node], effect_type: str) -> None:
+    def apply(self, start_nodes: List[Node], effect_type: str) -> int:
         if effect_type not in ("heatValue", "distValue", "distToStart"):
             raise ValueError("effect_type must be 'heatValue' or 'distValue' or 'distToStart'")
 
         self.strip_value(effect_type)
         visited = set()
         queue = deque()
+        max_value = 0
 
         for start_node in start_nodes:
             node = self.nodes.get(start_node.id)
@@ -265,8 +266,11 @@ class Board:
                     continue
 
                 setattr(neighbor, effect_type, next_value)
+                max_value = max(max_value, next_value)
                 visited.add(neighbor.id)
                 queue.append(neighbor)
+
+        return max_value
 
    
 

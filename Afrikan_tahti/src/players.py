@@ -1,6 +1,4 @@
 # players.py
-import token
-
 import numpy as np
 
 class BasePlayer:
@@ -12,7 +10,8 @@ class BasePlayer:
         self.stun: int = 0
         self.moves: int = 0
         self.id: int = 0
-    
+        self.paid_sea: bool = False
+        self.free_sea: bool = False
     def take(self, token: str) -> str:
         # takes a token and updates money and available_to_win accordingly return token if not taken, otherwise None
         
@@ -30,7 +29,7 @@ class BasePlayer:
         elif token == "Smaragd":
             self.money += 600
             return None
-        elif token == "Topaz":
+        elif token == "Ruby":
             self.money += 1000
             return None
         elif token == "Bandit":

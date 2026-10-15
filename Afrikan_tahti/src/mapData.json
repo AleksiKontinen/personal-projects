@@ -133,12 +133,12 @@
     },
     {
         "from": "Sahara",
-        "to": "Bandit1",
+        "to": "bandit1",
         "type": "road",
         "distance": 1
     },
     {
-        "from": "Bandit1",
+        "from": "bandit1",
         "to": "Darfur",
         "type": "road",
         "distance": 5
@@ -378,7 +378,7 @@
         "distance": 6
     },
     {
-        "from": "Bandit2",
+        "from": "bandit2",
         "to": "st Helena",
         "type": "sea",
         "distance": 0
