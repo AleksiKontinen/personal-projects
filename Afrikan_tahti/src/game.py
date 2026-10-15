@@ -43,8 +43,8 @@ class Game:
             random.seed(seed)       # Board.reset_tokens uses the global RNG
         self.board.reset_tokens()   # cheap: reshuffle tokens only
         starts = [self.board.get_node_by_name(n) for n in self.board.STARTING_CITY_NAMES]
-        self.board.apply(self.board.get_nodes_with_tokens(), "distValue")
-        self.board.apply(starts, "distToStart")
+        self.refresh_distValue()
+        self.maxDistValueToStart = self.board.apply(starts, "distToStart")
  
         self.players = []
         for i in range(self.player_count):
@@ -57,8 +57,22 @@ class Game:
         self.current = 0
         self.winner = None
         self.star_found = False
-        self.refresh_heat()
+        self.refresh_heat(self.players[self.current])
         self.start_turn()
+
+    def refresh_heat(self, player: BasePlayer) -> None:
+        other_player_nodes = [
+            node
+            for other_player in self.players
+            if other_player is not player
+            if (node := self.board.get_node_by_id(other_player.location)) is not None
+        ]
+        self.maxHeatValue = self.board.apply(other_player_nodes, "heatValue")
+
+    def refresh_distValue(self) -> None:
+        self.maxDistValue = self.board.apply(
+            self.board.get_nodes_with_tokens(), "distValue"
+        )
 
     def start_turn(self) -> None:
         p = self.players[self.current]
@@ -134,6 +148,8 @@ class Game:
                         distToStart=dist_to_start,
                     )
                 )
+                if next_slot == 12:
+                    break
                 next_slot += 1
 
         if current_node.token:
@@ -165,9 +181,23 @@ class Game:
                 )
             )
 
-        return actions
+        return sorted(
+            actions,
+            key=lambda action: action.slot if action is not None else 13,
+        )
 
-    def observe(self, player: BasePlayer) -> np.ndarray:
+    def action_mask(self, actions: list[Action | None]) -> np.ndarray:
+        mask = np.zeros(12, dtype=bool)
+        for action in actions:
+            if action is None:
+                continue
+            if not 1 <= action.slot <= 12:
+                raise ValueError(f"Action slot {action.slot} is outside the range 1..12")
+            mask[action.slot - 1] = True
+        return mask
+
+    def observe(self, player: BasePlayer, actions: list[Action | None]) -> np.ndarray:
+        self.refresh_heat(player)
         current_node = self.board.get_node_by_id(player.location)
         if current_node is None:
             raise ValueError(f"Player location {player.location} is not on the board")
@@ -194,7 +224,7 @@ class Game:
         move_actions = sorted(
             (
                 action
-                for action in self.legal_actions(player)
+                for action in actions
                 if action is not None and action.kind == "move"
             ),
             key=lambda action: action.slot,
