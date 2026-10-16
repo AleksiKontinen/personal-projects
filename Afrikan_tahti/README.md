@@ -14,3 +14,6 @@ Bandit nodes: if player has to stay at a bandit node they get stunned until they
 Gold coast: gems found at this location have double reward
 Slave coast: if player finds blank at this location they are stunned for 3 turns.
 Cape town: first player to get to cape town receive 500 money
+
+## Status
+First training runs are now running, goal is to beat the greedy opponent. I will update this with statistics when I get enough data. 

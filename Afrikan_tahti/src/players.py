@@ -17,7 +17,6 @@ class BasePlayer:
         
         if token == "Star":
             self.available_to_win = True
-            self.is_star_found = True
             return None
         elif token == "Topaz":
             self.money += 300

@@ -5,7 +5,7 @@ from players import BasePlayer
 from actions import Action
 
 class Game:
-    DICE_MIN = 0
+    DICE_MIN = 1
     DICE_MAX = 6
     FREE_SEA_MOVES = 2
     CAPE_TOWN_BONUS = 500
@@ -24,6 +24,8 @@ class Game:
         self.star_found = False
         self.maxHeatStartValue = 0
         self.maxDistValue = 0
+        self.start_ids: list[int] = []
+        self.cape_town_claimed = False
         self.reset()
 
     
@@ -45,6 +47,8 @@ class Game:
         self.current = 0
         self.winner = None
         self.star_found = False
+        self.start_ids = {n.id for n in starts}
+        self.cape_town_claimed = False
         self.refresh_heat(self.players[self.current])
         self.start_turn()
 
@@ -65,9 +69,7 @@ class Game:
         self.refresh_heat(p)
         if p.stun > 0:
             p.stun -= 1
-            p.moves = 0
-        else:
-            p.moves = random.randint(self.DICE_MIN, self.DICE_MAX)
+            self.end_turn()
 
         if p.bandit_stuck:                  # stuck until a 1 or 2 is rolled
             roll = random.randint(self.DICE_MIN, self.DICE_MAX)
@@ -93,7 +95,7 @@ class Game:
             self.turn += 1
         self.start_turn()
 
-    def legal_actions(self, player: BasePlayer) -> list[Action]: # list of 12 actions, some None
+    def legal_actions(self, player: BasePlayer) -> list[Action]: 
         
         current_node = self.board.get_node_by_id(player.location)
         if current_node is None:
@@ -207,6 +209,7 @@ class Game:
         winning_distances = [
             node.distToStart
             for other_player in self.players
+            if other_player is not player
             if other_player.available_to_win
             if (node := self.board.get_node_by_id(other_player.location)) is not None
         ]
@@ -215,12 +218,14 @@ class Game:
         obs = [
             np.clip(player.money / 2000, 0, 1),
             np.clip(player.moves / 6, 0, 1),
-            np.clip(current_node.heatValue / self.maxHeatStartValue, 0, 1),
-            np.clip(current_node.distValue / self.maxDistValue, 0, 1),
-            np.clip(current_node.distToStart / self.maxHeatStartValue, 0, 1),
+            1 - np.clip(current_node.heatValue / self.maxHeatStartValue, 0, 1),
+            1 - np.clip(current_node.distValue / self.maxDistValue, 0, 1),
+            1 - np.clip(current_node.distToStart / self.maxHeatStartValue, 0, 1),
             int(bool(current_node.token)),
             int(player.available_to_win),
             np.clip(closest_winning_distance / self.maxHeatStartValue,0,1),
+            int(self.star_found),
+            self.board.token_value(),
         ]
 
         move_actions = sorted(
@@ -233,9 +238,9 @@ class Game:
         )[:9]
         for action in move_actions:
             obs.extend([
-                np.clip(current_node.distValue / self.maxDistValue, 0, 1),
-                np.clip(current_node.heatValue / self.maxHeatStartValue, 0, 1),
-                np.clip(current_node.distToStart / self.maxHeatStartValue, 0, 1),
+                1 - np.clip(action.distValue / self.maxDistValue, 0, 1),
+                1 - np.clip(action.heatValue / self.maxHeatStartValue, 0, 1),
+                1 - np.clip(action.distToStart / self.maxHeatStartValue, 0, 1),
                 np.clip(action.cost / 300, 0, 1),
                 np.clip(action.moves_used / 6, 0, 1),
             ])

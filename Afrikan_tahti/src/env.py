@@ -4,6 +4,7 @@
 # step()/reset() until the turn comes back to the agent (or someone wins).
 from __future__ import annotations
 
+from logging import info
 import random
 from dataclasses import dataclass
 from typing import Callable
@@ -16,7 +17,7 @@ from game import Game
 from players import BasePlayer
 
 N_ACTIONS = 12                  # slots 1..12  ->  action index 0..11
-MAX_OPPONENT_ACTIONS = 20     # safety net against a rule bug that never ends a turn
+MAX_OPPONENT_ACTIONS = 200     # safety net against a rule bug that never ends a turn
 
 OpponentPolicy = Callable[[Game, BasePlayer], int]   # returns a legal slot (1..12)
 
@@ -62,8 +63,9 @@ class RewardConfig:
     lose: float = 0.0            # someone else won
     shape_scale: float = 0.02    # per hop closer to tokens / to the start nodes
     shape_clip: int = 3          # cap on hops counted per move (air jumps)
-
-
+    illegal: float = -0.05
+    ready_bonus: float = 3.0     # first time available_to_win flips to True
+    return_scale: float = 0.1    # per hop closer to the start once ready
 # ------------------------------------------------------------------------ env
 class AfrikanTahtiEnv(gym.Env):
     metadata = {"render_modes": []}
@@ -73,7 +75,7 @@ class AfrikanTahtiEnv(gym.Env):
         player_count: int = 5,
         opponent: OpponentPolicy = greedy_opponent,
         rewards: RewardConfig | None = None,
-        max_turns: int = 200,
+        max_turns: int = 60,
         randomize_seat: bool = True,
     ):
         super().__init__()
@@ -87,7 +89,7 @@ class AfrikanTahtiEnv(gym.Env):
 
         self.action_space = spaces.Discrete(N_ACTIONS)
         obs_dim = self._probe_obs_dim()
-        self.observation_space = spaces.Box(-np.inf, np.inf, shape=(obs_dim,), dtype=np.float32)
+        self.observation_space = spaces.Box(0.0, 1.0, shape=(obs_dim,), dtype=np.float32)
 
     # ---- gym API
     def reset(self, *, seed: int | None = None, options=None):
@@ -104,11 +106,16 @@ class AfrikanTahtiEnv(gym.Env):
         g = self.game
         if g.winner is not None or g.current != self.agent_idx:
             raise RuntimeError("step() called when it is not the agent's turn; call reset()")
-        if not self._mask[int(action)]:
-            raise ValueError(f"illegal action {action}, mask={self._mask.astype(int)}")
-
-        info = g.step(int(action) + 1)        # slots are 1-based
-        reward = self._reward(info)
+        illegal = not self._mask[int(action)]
+        if illegal:
+            action = 0
+        agent = g.players[self.agent_idx]
+        was_ready = agent.available_to_win
+        info = g.step(int(action) + 1)
+        info["was_ready"] = was_ready
+        info["became_ready"] = agent.available_to_win and not was_ready
+        info["illegal"] = illegal
+        reward = self._reward(info) 
         self._play_opponents()
 
         terminated = g.winner is not None
@@ -137,8 +144,10 @@ class AfrikanTahtiEnv(gym.Env):
     def _reward(self, info: dict) -> float:
         r = self.rewards
         total = 0.0
-        if info["token"] is not None:
-            total += r.open_token
+        if info["token"] is not None and not info["was_ready"]:
+            total += r.open_token # tokens do not reward after ready
+        if info["became_ready"]:
+            total += r.ready_bonus # bonus for being able to win (first time only)
         if info["kind"] == "move":
             # assumes node.distValue / node.distToStart hold raw hop counts
             board = self.game.board
@@ -146,9 +155,12 @@ class AfrikanTahtiEnv(gym.Env):
             attr = "distToStart" if agent.available_to_win else "distValue"
             a = getattr(board.get_node_by_id(info["from"]), attr)
             b = getattr(board.get_node_by_id(info["to"]), attr)
-            total += r.shape_scale * float(np.clip(a - b, -r.shape_clip, r.shape_clip))
+            scale = r.return_scale if info["was_ready"] else r.shape_scale
+            total += scale * float(np.clip(a - b, -r.shape_clip, r.shape_clip))
         if info["won"]:
             total += r.win
+        if info["illegal"]:
+            total += r.illegal
         return total
 
     def _observe(self) -> np.ndarray:
