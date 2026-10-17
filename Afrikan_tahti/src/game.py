@@ -70,6 +70,7 @@ class Game:
         if p.stun > 0:
             p.stun -= 1
             self.end_turn()
+            return
 
         if p.bandit_stuck:                  # stuck until a 1 or 2 is rolled
             roll = random.randint(self.DICE_MIN, self.DICE_MAX)
@@ -213,7 +214,9 @@ class Game:
             if other_player.available_to_win
             if (node := self.board.get_node_by_id(other_player.location)) is not None
         ]
-        closest_winning_distance = min(winning_distances, default=0)
+        any_opponent_ready = len(winning_distances) > 0
+        # 1.0 = nobody can win (safe), approaches 0 as a ready opponent nears a start node
+        closest_winning_distance = min(winning_distances, default=self.maxHeatStartValue)
 
         obs = [
             np.clip(player.money / 2000, 0, 1),
@@ -223,7 +226,8 @@ class Game:
             1 - np.clip(current_node.distToStart / self.maxHeatStartValue, 0, 1),
             int(bool(current_node.token)),
             int(player.available_to_win),
-            np.clip(closest_winning_distance / self.maxHeatStartValue,0,1),
+            np.clip(closest_winning_distance / self.maxHeatStartValue, 0, 1),
+            int(any_opponent_ready),
             int(self.star_found),
             self.board.token_value(),
         ]
@@ -236,16 +240,17 @@ class Game:
             ),
             key=lambda action: action.slot,
         )[:9]
+        goal = "distToStart" if player.available_to_win else "distValue"
         for action in move_actions:
             obs.extend([
-                1 - np.clip(action.distValue / self.maxDistValue, 0, 1),
-                1 - np.clip(action.heatValue / self.maxHeatStartValue, 0, 1),
+                float(np.clip(getattr(current_node, goal) - getattr(action, goal), -1, 1)), 
                 1 - np.clip(action.distToStart / self.maxHeatStartValue, 0, 1),
+                1 - np.clip(action.heatValue / self.maxHeatStartValue, 0, 1),
                 np.clip(action.cost / 300, 0, 1),
                 np.clip(action.moves_used / 6, 0, 1),
             ])
 
-        obs.extend([0] * (9 - len(move_actions)) * 5)
+        obs.extend([0] * ((9 - len(move_actions)) * 5))
         return np.array(obs, dtype=np.float32)
 
     def step(self, slot: int) -> dict:

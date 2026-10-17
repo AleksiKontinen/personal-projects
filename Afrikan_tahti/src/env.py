@@ -64,8 +64,10 @@ class RewardConfig:
     shape_scale: float = 0.02    # per hop closer to tokens / to the start nodes
     shape_clip: int = 3          # cap on hops counted per move (air jumps)
     illegal: float = -0.05
-    ready_bonus: float = 3.0     # first time available_to_win flips to True
+    ready_bonus: float = 0.0     # first time available_to_win flips to True
     return_scale: float = 0.1    # per hop closer to the start once ready
+    return_clip: int = 15            # large enough that air jumps are paid in full
+    ready_turn_penalty: float = 0.03 # per full round the agent spends ready but not home
 # ------------------------------------------------------------------------ env
 class AfrikanTahtiEnv(gym.Env):
     metadata = {"render_modes": []}
@@ -89,7 +91,7 @@ class AfrikanTahtiEnv(gym.Env):
 
         self.action_space = spaces.Discrete(N_ACTIONS)
         obs_dim = self._probe_obs_dim()
-        self.observation_space = spaces.Box(0.0, 1.0, shape=(obs_dim,), dtype=np.float32)
+        self.observation_space = spaces.Box(-1.0, 1.0, shape=(obs_dim,), dtype=np.float32)
 
     # ---- gym API
     def reset(self, *, seed: int | None = None, options=None):
@@ -106,11 +108,14 @@ class AfrikanTahtiEnv(gym.Env):
         g = self.game
         if g.winner is not None or g.current != self.agent_idx:
             raise RuntimeError("step() called when it is not the agent's turn; call reset()")
+        
         illegal = not self._mask[int(action)]
         if illegal:
             action = 0
+
         agent = g.players[self.agent_idx]
         was_ready = agent.available_to_win
+        t0 = g.turn
         info = g.step(int(action) + 1)
         info["was_ready"] = was_ready
         info["became_ready"] = agent.available_to_win and not was_ready
@@ -121,6 +126,10 @@ class AfrikanTahtiEnv(gym.Env):
         terminated = g.winner is not None
         if terminated and g.winner != self.agent_idx:
             reward += self.rewards.lose
+
+        if agent.available_to_win and not (terminated and g.winner == self.agent_idx):
+            reward -= self.rewards.ready_turn_penalty * (g.turn - t0)
+
         truncated = (not terminated) and g.turn >= self.max_turns
         return self._observe(), reward, terminated, truncated, self._info()
 
@@ -156,7 +165,8 @@ class AfrikanTahtiEnv(gym.Env):
             a = getattr(board.get_node_by_id(info["from"]), attr)
             b = getattr(board.get_node_by_id(info["to"]), attr)
             scale = r.return_scale if info["was_ready"] else r.shape_scale
-            total += scale * float(np.clip(a - b, -r.shape_clip, r.shape_clip))
+            clip = r.return_clip if info["was_ready"] else r.shape_clip
+            total += scale * float(np.clip(a - b, -clip, clip))
         if info["won"]:
             total += r.win
         if info["illegal"]:

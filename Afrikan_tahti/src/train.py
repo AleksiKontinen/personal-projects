@@ -32,7 +32,7 @@ def check() -> None:
     print(f"random episode: {steps} agent steps, return {total:.2f}, info {info}")
 
 
-def train(timesteps: int = 1_000_000) -> None:
+def train(timesteps: int = 500_000) -> None:
     from sb3_contrib import MaskablePPO
     from stable_baselines3.common.env_util import make_vec_env
 
@@ -88,7 +88,73 @@ def evaluate() -> None:
         rate, turns, cw = win_rate(fn)
         print(f"{name:13s} win rate {rate:.2f}   could-win {cw:.2f}   mean turns {turns:.1f}")
 
-def diagnose(episodes: int = 100, deterministic: bool = False) -> None:
+def funnel(pick_action, episodes: int = 1000, label: str = "") -> None:
+    env = AfrikanTahtiEnv(player_count=PLAYERS)
+    out = Counter()
+    ready_turn = {"won": [], "lost_race": [], "truncated": []}
+    ready_dist = {"won": [], "lost_race": [], "truncated": []}
+    end_turn = {"won": [], "lost_race": [], "truncated": []}
+    kinds = Counter()
+    for i in range(episodes):
+        obs, info = env.reset(seed=i)
+        g = env.game
+        me = g.players[env.agent_idx]
+        r_turn = r_dist = None
+        done = False
+        while not done:
+            ready_before = me.available_to_win
+            act = pick_action(env, obs)
+            if ready_before:
+                a = next((x for x in g.legal_actions(me) if x.slot == act + 1), None)
+                if a is not None:
+                    kinds[a.kind + (f"_r{a.route}" if a.kind == "move" else "")] += 1
+            obs, _, term, trunc, info = env.step(act)
+            done = term or trunc
+            if r_turn is None and me.available_to_win:
+                r_turn = g.turn
+                r_dist = g.board.get_node_by_id(me.location).distToStart
+        if r_turn is None:
+            out["never_ready"] += 1
+            continue
+        key = "won" if info["agent_won"] else ("lost_race" if info["winner"] is not None else "truncated")
+        out[key] += 1
+        ready_turn[key].append(r_turn)
+        ready_dist[key].append(r_dist)
+        end_turn[key].append(info["turn"])
+    print(f"--- {label} ({episodes} eps) ---")
+    print(dict(out))
+    for k in ("won", "lost_race", "truncated"):
+        if ready_turn[k]:
+            print(f"{k:10s} ready at turn {np.mean(ready_turn[k]):.1f}, "
+                  f"hops from start when ready {np.mean(ready_dist[k]):.1f}, "
+                  f"game ended turn {np.mean(end_turn[k]):.1f}")
+    print("actions while ready:", dict(kinds))
+
+def funnel_cmd() -> None:
+    from sb3_contrib import MaskablePPO
+    model = MaskablePPO.load(MODEL_PATH)
+
+    def trained(env, obs, det=True):
+        a, _ = model.predict(obs, action_masks=env.action_masks(), deterministic=det)
+        return int(a)
+
+    def greedy(env, obs):
+        g = env.game
+        return greedy_opponent(g, g.players[env.agent_idx]) - 1
+
+    def agent_then_greedy(env, obs):          # agent searches, greedy returns
+        p = env.game.players[env.agent_idx]
+        return greedy(env, obs) if p.available_to_win else trained(env, obs)
+
+    def greedy_then_agent(env, obs):          # greedy searches, agent returns
+        p = env.game.players[env.agent_idx]
+        return trained(env, obs) if p.available_to_win else greedy(env, obs)
+
+    for name, fn in (("trained", trained), ("greedy", greedy),
+                     ("agent->greedy", agent_then_greedy), ("greedy->agent", greedy_then_agent)):
+        funnel(fn, 1000, name)
+
+def diagnose(episodes: int = 100, deterministic: bool = True) -> None:
     from sb3_contrib import MaskablePPO
     model = MaskablePPO.load(MODEL_PATH)
     env = AfrikanTahtiEnv(player_count=PLAYERS)
@@ -123,6 +189,45 @@ def greedy_return(episodes: int = 100) -> None:
             done = term or trunc
         returns.append(total)
     print(f"greedy mean return {np.mean(returns):.2f}")
+    
+def ready_audit(episodes: int = 1000) -> None:
+    from sb3_contrib import MaskablePPO
+    model = MaskablePPO.load(MODEL_PATH)
+    env = AfrikanTahtiEnv(player_count=PLAYERS)
+    c = Counter()
+    for i in range(episodes):
+        obs, _ = env.reset(seed=i)
+        g = env.game
+        me = g.players[env.agent_idx]
+        done = False
+        while not done:
+            if me.available_to_win:
+                legal = g.legal_actions(me)
+                here = g.board.get_node_by_id(me.location).distToStart
+                act, _ = model.predict(obs, action_masks=env.action_masks(), deterministic=True)
+                a = next(x for x in legal if x.slot == int(act) + 1)
+                walk = [x for x in legal if x.kind == "move" and x.route != 3]
+                improving = [x for x in walk if g.board.get_node_by_id(x.target).distToStart < here]
+                if me.moves > 0:
+                    c["decisions_with_moves"] += 1
+                    c["improving_available"] += bool(improving)
+                    if a.kind == "move" and a.route != 3:
+                        d = here - g.board.get_node_by_id(a.target).distToStart
+                        c["walk_improve" if d > 0 else "walk_flat" if d == 0 else "walk_worse"] += 1
+                        c["walk_improve_but_cost"] += (d > 0 and a.cost > 0)
+                    elif a.kind == "move":
+                        gain = here - g.board.get_node_by_id(a.target).distToStart
+                        c["air"] += 1
+                        c["air_gain_lt_moves"] += gain < me.moves
+                        c["air_gain_sum"] += gain
+                        c["air_moves_sum"] += me.moves
+                    else:
+                        c[f"non_move_{a.kind}_with_moves_left"] += 1
+                else:
+                    c["decisions_no_moves"] += 1
+            obs, _, term, trunc, _ = env.step(int(act) if False else int(model.predict(obs, action_masks=env.action_masks(), deterministic=True)[0]))
+            done = term or trunc
+    print(dict(c))
 
 if __name__ == "__main__":
-    {"check": check, "train": train, "eval": evaluate, "diag": diagnose, "greedy": greedy_return}[sys.argv[1] if len(sys.argv) > 1 else "check"]()
+    {"check": check, "train": train, "eval": evaluate, "diag": diagnose, "greedy": greedy_return, "funnel": funnel_cmd, "audit": ready_audit}[sys.argv[1] if len(sys.argv) > 1 else "check"]()
