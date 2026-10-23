@@ -1,0 +1,3097 @@
+{
+ "image": "AfrikanTahti.jpg",
+ "size": [
+  474,
+  662
+ ],
+ "next_id": 221,
+ "nodes": [
+  {
+   "id": 1,
+   "name": "Tangier",
+   "kind": "city",
+   "x": 113.0,
+   "y": 89.0,
+   "start": true
+  },
+  {
+   "id": 2,
+   "name": "",
+   "kind": "segment",
+   "x": 124.0,
+   "y": 122.0,
+   "start": false
+  },
+  {
+   "id": 3,
+   "name": "",
+   "kind": "segment",
+   "x": 141.0,
+   "y": 129.0,
+   "start": false
+  },
+  {
+   "id": 4,
+   "name": "",
+   "kind": "segment",
+   "x": 161.0,
+   "y": 130.0,
+   "start": false
+  },
+  {
+   "id": 5,
+   "name": "",
+   "kind": "segment",
+   "x": 178.0,
+   "y": 118.0,
+   "start": false
+  },
+  {
+   "id": 6,
+   "name": "Tunis",
+   "kind": "city",
+   "x": 206.0,
+   "y": 105.0,
+   "start": false
+  },
+  {
+   "id": 7,
+   "name": "",
+   "kind": "segment",
+   "x": 197.0,
+   "y": 132.0,
+   "start": false
+  },
+  {
+   "id": 8,
+   "name": "",
+   "kind": "segment",
+   "x": 205.0,
+   "y": 145.0,
+   "start": false
+  },
+  {
+   "id": 9,
+   "name": "Tripoli",
+   "kind": "city",
+   "x": 226.0,
+   "y": 139.0,
+   "start": false
+  },
+  {
+   "id": 10,
+   "name": "",
+   "kind": "segment",
+   "x": 225.0,
+   "y": 171.0,
+   "start": false
+  },
+  {
+   "id": 11,
+   "name": "",
+   "kind": "segment",
+   "x": 240.0,
+   "y": 184.0,
+   "start": false
+  },
+  {
+   "id": 12,
+   "name": "",
+   "kind": "segment",
+   "x": 258.0,
+   "y": 185.0,
+   "start": false
+  },
+  {
+   "id": 13,
+   "name": "",
+   "kind": "segment",
+   "x": 275.0,
+   "y": 180.0,
+   "start": false
+  },
+  {
+   "id": 14,
+   "name": "",
+   "kind": "segment",
+   "x": 293.0,
+   "y": 189.0,
+   "start": false
+  },
+  {
+   "id": 15,
+   "name": "Egypt",
+   "kind": "city",
+   "x": 309.0,
+   "y": 202.0,
+   "start": false
+  },
+  {
+   "id": 16,
+   "name": "",
+   "kind": "segment",
+   "x": 311.0,
+   "y": 184.0,
+   "start": false
+  },
+  {
+   "id": 17,
+   "name": "",
+   "kind": "segment",
+   "x": 315.0,
+   "y": 171.0,
+   "start": false
+  },
+  {
+   "id": 18,
+   "name": "",
+   "kind": "segment",
+   "x": 327.0,
+   "y": 162.0,
+   "start": false
+  },
+  {
+   "id": 19,
+   "name": "Cairo",
+   "kind": "city",
+   "x": 327.0,
+   "y": 127.0,
+   "start": true
+  },
+  {
+   "id": 20,
+   "name": "",
+   "kind": "segment",
+   "x": 280.0,
+   "y": 123.0,
+   "start": false
+  },
+  {
+   "id": 21,
+   "name": "",
+   "kind": "segment",
+   "x": 262.0,
+   "y": 114.0,
+   "start": false
+  },
+  {
+   "id": 22,
+   "name": "fork1",
+   "kind": "fork",
+   "x": 244.0,
+   "y": 112.0,
+   "start": false
+  },
+  {
+   "id": 23,
+   "name": "",
+   "kind": "segment",
+   "x": 230.0,
+   "y": 110.0,
+   "start": false
+  },
+  {
+   "id": 24,
+   "name": "",
+   "kind": "segment",
+   "x": 175.0,
+   "y": 93.0,
+   "start": false
+  },
+  {
+   "id": 25,
+   "name": "",
+   "kind": "segment",
+   "x": 154.0,
+   "y": 92.0,
+   "start": false
+  },
+  {
+   "id": 26,
+   "name": "",
+   "kind": "segment",
+   "x": 74.0,
+   "y": 105.0,
+   "start": false
+  },
+  {
+   "id": 27,
+   "name": "",
+   "kind": "segment",
+   "x": 57.0,
+   "y": 110.0,
+   "start": false
+  },
+  {
+   "id": 28,
+   "name": "Canary Islands",
+   "kind": "city",
+   "x": 35.0,
+   "y": 126.0,
+   "start": false
+  },
+  {
+   "id": 29,
+   "name": "",
+   "kind": "segment",
+   "x": 11.0,
+   "y": 146.0,
+   "start": false
+  },
+  {
+   "id": 30,
+   "name": "",
+   "kind": "segment",
+   "x": 5.0,
+   "y": 166.0,
+   "start": false
+  },
+  {
+   "id": 31,
+   "name": "",
+   "kind": "segment",
+   "x": 3.0,
+   "y": 189.0,
+   "start": false
+  },
+  {
+   "id": 32,
+   "name": "",
+   "kind": "segment",
+   "x": 5.0,
+   "y": 208.0,
+   "start": false
+  },
+  {
+   "id": 33,
+   "name": "Cape Verde",
+   "kind": "city",
+   "x": 12.0,
+   "y": 237.0,
+   "start": false
+  },
+  {
+   "id": 34,
+   "name": "",
+   "kind": "segment",
+   "x": 33.0,
+   "y": 219.0,
+   "start": false
+  },
+  {
+   "id": 35,
+   "name": "",
+   "kind": "segment",
+   "x": 50.0,
+   "y": 210.0,
+   "start": false
+  },
+  {
+   "id": 36,
+   "name": "",
+   "kind": "segment",
+   "x": 67.0,
+   "y": 214.0,
+   "start": false
+  },
+  {
+   "id": 37,
+   "name": "",
+   "kind": "segment",
+   "x": 80.0,
+   "y": 202.0,
+   "start": false
+  },
+  {
+   "id": 38,
+   "name": "",
+   "kind": "segment",
+   "x": 95.0,
+   "y": 187.0,
+   "start": false
+  },
+  {
+   "id": 39,
+   "name": "",
+   "kind": "segment",
+   "x": 107.0,
+   "y": 174.0,
+   "start": false
+  },
+  {
+   "id": 40,
+   "name": "",
+   "kind": "segment",
+   "x": 108.0,
+   "y": 154.0,
+   "start": false
+  },
+  {
+   "id": 41,
+   "name": "Morocco",
+   "kind": "city",
+   "x": 87.0,
+   "y": 133.0,
+   "start": false
+  },
+  {
+   "id": 42,
+   "name": "fork2",
+   "kind": "fork",
+   "x": 109.0,
+   "y": 127.0,
+   "start": false
+  },
+  {
+   "id": 43,
+   "name": "",
+   "kind": "segment",
+   "x": 119.0,
+   "y": 137.0,
+   "start": false
+  },
+  {
+   "id": 44,
+   "name": "",
+   "kind": "segment",
+   "x": 132.0,
+   "y": 147.0,
+   "start": false
+  },
+  {
+   "id": 45,
+   "name": "",
+   "kind": "segment",
+   "x": 141.0,
+   "y": 163.0,
+   "start": false
+  },
+  {
+   "id": 46,
+   "name": "Sahara",
+   "kind": "city",
+   "x": 166.0,
+   "y": 178.0,
+   "start": false
+  },
+  {
+   "id": 47,
+   "name": "",
+   "kind": "segment",
+   "x": 192.0,
+   "y": 185.0,
+   "start": false
+  },
+  {
+   "id": 48,
+   "name": "bandit1",
+   "kind": "bandit",
+   "x": 213.0,
+   "y": 193.0,
+   "start": false
+  },
+  {
+   "id": 49,
+   "name": "",
+   "kind": "segment",
+   "x": 229.0,
+   "y": 203.0,
+   "start": false
+  },
+  {
+   "id": 50,
+   "name": "",
+   "kind": "segment",
+   "x": 240.0,
+   "y": 215.0,
+   "start": false
+  },
+  {
+   "id": 51,
+   "name": "",
+   "kind": "segment",
+   "x": 253.0,
+   "y": 224.0,
+   "start": false
+  },
+  {
+   "id": 52,
+   "name": "",
+   "kind": "segment",
+   "x": 264.0,
+   "y": 235.0,
+   "start": false
+  },
+  {
+   "id": 53,
+   "name": "",
+   "kind": "segment",
+   "x": 270.0,
+   "y": 253.0,
+   "start": false
+  },
+  {
+   "id": 54,
+   "name": "Darfur",
+   "kind": "city",
+   "x": 288.0,
+   "y": 272.0,
+   "start": false
+  },
+  {
+   "id": 55,
+   "name": "",
+   "kind": "segment",
+   "x": 301.0,
+   "y": 246.0,
+   "start": false
+  },
+  {
+   "id": 56,
+   "name": "",
+   "kind": "segment",
+   "x": 308.0,
+   "y": 232.0,
+   "start": false
+  },
+  {
+   "id": 57,
+   "name": "",
+   "kind": "segment",
+   "x": 42.0,
+   "y": 243.0,
+   "start": false
+  },
+  {
+   "id": 58,
+   "name": "",
+   "kind": "segment",
+   "x": 58.0,
+   "y": 255.0,
+   "start": false
+  },
+  {
+   "id": 59,
+   "name": "",
+   "kind": "segment",
+   "x": 58.0,
+   "y": 273.0,
+   "start": false
+  },
+  {
+   "id": 60,
+   "name": "Sierra Leone",
+   "kind": "city",
+   "x": 38.0,
+   "y": 287.0,
+   "start": false
+  },
+  {
+   "id": 61,
+   "name": "",
+   "kind": "segment",
+   "x": 64.0,
+   "y": 285.0,
+   "start": false
+  },
+  {
+   "id": 62,
+   "name": "",
+   "kind": "segment",
+   "x": 81.0,
+   "y": 275.0,
+   "start": false
+  },
+  {
+   "id": 63,
+   "name": "fork3",
+   "kind": "fork",
+   "x": 96.0,
+   "y": 269.0,
+   "start": false
+  },
+  {
+   "id": 64,
+   "name": "",
+   "kind": "segment",
+   "x": 97.0,
+   "y": 287.0,
+   "start": false
+  },
+  {
+   "id": 65,
+   "name": "Gold Coast",
+   "kind": "city",
+   "x": 106.0,
+   "y": 309.0,
+   "start": false
+  },
+  {
+   "id": 66,
+   "name": "",
+   "kind": "segment",
+   "x": 109.0,
+   "y": 256.0,
+   "start": false
+  },
+  {
+   "id": 67,
+   "name": "Timbuktu",
+   "kind": "city",
+   "x": 119.0,
+   "y": 229.0,
+   "start": false
+  },
+  {
+   "id": 68,
+   "name": "",
+   "kind": "segment",
+   "x": 142.0,
+   "y": 247.0,
+   "start": false
+  },
+  {
+   "id": 69,
+   "name": "",
+   "kind": "segment",
+   "x": 151.0,
+   "y": 258.0,
+   "start": false
+  },
+  {
+   "id": 70,
+   "name": "",
+   "kind": "segment",
+   "x": 160.0,
+   "y": 275.0,
+   "start": false
+  },
+  {
+   "id": 71,
+   "name": "",
+   "kind": "segment",
+   "x": 159.0,
+   "y": 292.0,
+   "start": false
+  },
+  {
+   "id": 72,
+   "name": "Slave Coast",
+   "kind": "city",
+   "x": 160.0,
+   "y": 314.0,
+   "start": false
+  },
+  {
+   "id": 73,
+   "name": "",
+   "kind": "segment",
+   "x": 186.0,
+   "y": 304.0,
+   "start": false
+  },
+  {
+   "id": 74,
+   "name": "",
+   "kind": "segment",
+   "x": 204.0,
+   "y": 304.0,
+   "start": false
+  },
+  {
+   "id": 75,
+   "name": "fork4",
+   "kind": "fork",
+   "x": 219.0,
+   "y": 302.0,
+   "start": false
+  },
+  {
+   "id": 76,
+   "name": "",
+   "kind": "segment",
+   "x": 215.0,
+   "y": 288.0,
+   "start": false
+  },
+  {
+   "id": 77,
+   "name": "",
+   "kind": "segment",
+   "x": 213.0,
+   "y": 274.0,
+   "start": false
+  },
+  {
+   "id": 78,
+   "name": "",
+   "kind": "segment",
+   "x": 214.0,
+   "y": 258.0,
+   "start": false
+  },
+  {
+   "id": 79,
+   "name": "Ain Galaka",
+   "kind": "city",
+   "x": 224.0,
+   "y": 236.0,
+   "start": false
+  },
+  {
+   "id": 80,
+   "name": "",
+   "kind": "segment",
+   "x": 244.0,
+   "y": 248.0,
+   "start": false
+  },
+  {
+   "id": 81,
+   "name": "",
+   "kind": "segment",
+   "x": 252.0,
+   "y": 259.0,
+   "start": false
+  },
+  {
+   "id": 82,
+   "name": "",
+   "kind": "segment",
+   "x": 264.0,
+   "y": 269.0,
+   "start": false
+  },
+  {
+   "id": 83,
+   "name": "",
+   "kind": "segment",
+   "x": 266.0,
+   "y": 285.0,
+   "start": false
+  },
+  {
+   "id": 84,
+   "name": "",
+   "kind": "segment",
+   "x": 248.0,
+   "y": 288.0,
+   "start": false
+  },
+  {
+   "id": 85,
+   "name": "",
+   "kind": "segment",
+   "x": 234.0,
+   "y": 294.0,
+   "start": false
+  },
+  {
+   "id": 86,
+   "name": "",
+   "kind": "segment",
+   "x": 216.0,
+   "y": 320.0,
+   "start": false
+  },
+  {
+   "id": 87,
+   "name": "Kandjama",
+   "kind": "city",
+   "x": 211.0,
+   "y": 349.0,
+   "start": false
+  },
+  {
+   "id": 88,
+   "name": "",
+   "kind": "segment",
+   "x": 215.0,
+   "y": 377.0,
+   "start": false
+  },
+  {
+   "id": 89,
+   "name": "",
+   "kind": "segment",
+   "x": 215.0,
+   "y": 395.0,
+   "start": false
+  },
+  {
+   "id": 90,
+   "name": "Congo",
+   "kind": "city",
+   "x": 203.0,
+   "y": 418.0,
+   "start": false
+  },
+  {
+   "id": 91,
+   "name": "",
+   "kind": "segment",
+   "x": 226.0,
+   "y": 430.0,
+   "start": false
+  },
+  {
+   "id": 92,
+   "name": "",
+   "kind": "segment",
+   "x": 244.0,
+   "y": 424.0,
+   "start": false
+  },
+  {
+   "id": 93,
+   "name": "",
+   "kind": "segment",
+   "x": 257.0,
+   "y": 412.0,
+   "start": false
+  },
+  {
+   "id": 94,
+   "name": "Ocomba",
+   "kind": "city",
+   "x": 282.0,
+   "y": 403.0,
+   "start": false
+  },
+  {
+   "id": 95,
+   "name": "",
+   "kind": "segment",
+   "x": 304.0,
+   "y": 387.0,
+   "start": false
+  },
+  {
+   "id": 96,
+   "name": "",
+   "kind": "segment",
+   "x": 311.0,
+   "y": 370.0,
+   "start": false
+  },
+  {
+   "id": 97,
+   "name": "",
+   "kind": "segment",
+   "x": 323.0,
+   "y": 358.0,
+   "start": false
+  },
+  {
+   "id": 98,
+   "name": "Lake Victoria",
+   "kind": "city",
+   "x": 349.0,
+   "y": 349.0,
+   "start": false
+  },
+  {
+   "id": 99,
+   "name": "",
+   "kind": "segment",
+   "x": 327.0,
+   "y": 335.0,
+   "start": false
+  },
+  {
+   "id": 100,
+   "name": "Bahr el Ghazal",
+   "kind": "city",
+   "x": 314.0,
+   "y": 311.0,
+   "start": false
+  },
+  {
+   "id": 101,
+   "name": "",
+   "kind": "segment",
+   "x": 308.0,
+   "y": 287.0,
+   "start": false
+  },
+  {
+   "id": 102,
+   "name": "",
+   "kind": "segment",
+   "x": 316.0,
+   "y": 270.0,
+   "start": false
+  },
+  {
+   "id": 103,
+   "name": "",
+   "kind": "segment",
+   "x": 336.0,
+   "y": 265.0,
+   "start": false
+  },
+  {
+   "id": 104,
+   "name": "",
+   "kind": "segment",
+   "x": 352.0,
+   "y": 256.0,
+   "start": false
+  },
+  {
+   "id": 105,
+   "name": "Suakin",
+   "kind": "city",
+   "x": 372.0,
+   "y": 234.0,
+   "start": false
+  },
+  {
+   "id": 106,
+   "name": "",
+   "kind": "segment",
+   "x": 376.0,
+   "y": 260.0,
+   "start": false
+  },
+  {
+   "id": 107,
+   "name": "",
+   "kind": "segment",
+   "x": 380.0,
+   "y": 276.0,
+   "start": false
+  },
+  {
+   "id": 108,
+   "name": "Addis Ababa",
+   "kind": "city",
+   "x": 388.0,
+   "y": 302.0,
+   "start": false
+  },
+  {
+   "id": 109,
+   "name": "",
+   "kind": "segment",
+   "x": 415.0,
+   "y": 301.0,
+   "start": false
+  },
+  {
+   "id": 110,
+   "name": "",
+   "kind": "segment",
+   "x": 434.0,
+   "y": 302.0,
+   "start": false
+  },
+  {
+   "id": 111,
+   "name": "Cape Guardafui",
+   "kind": "city",
+   "x": 461.0,
+   "y": 291.0,
+   "start": false
+  },
+  {
+   "id": 112,
+   "name": "",
+   "kind": "segment",
+   "x": 443.0,
+   "y": 317.0,
+   "start": false
+  },
+  {
+   "id": 113,
+   "name": "",
+   "kind": "segment",
+   "x": 428.0,
+   "y": 330.0,
+   "start": false
+  },
+  {
+   "id": 114,
+   "name": "",
+   "kind": "segment",
+   "x": 411.0,
+   "y": 340.0,
+   "start": false
+  },
+  {
+   "id": 115,
+   "name": "",
+   "kind": "segment",
+   "x": 395.0,
+   "y": 354.0,
+   "start": false
+  },
+  {
+   "id": 116,
+   "name": "",
+   "kind": "segment",
+   "x": 386.0,
+   "y": 371.0,
+   "start": false
+  },
+  {
+   "id": 117,
+   "name": "Dar Es Salaam",
+   "kind": "city",
+   "x": 379.0,
+   "y": 398.0,
+   "start": false
+  },
+  {
+   "id": 118,
+   "name": "fork5",
+   "kind": "fork",
+   "x": 369.0,
+   "y": 425.0,
+   "start": false
+  },
+  {
+   "id": 119,
+   "name": "",
+   "kind": "segment",
+   "x": 378.0,
+   "y": 438.0,
+   "start": false
+  },
+  {
+   "id": 120,
+   "name": "Mozambique",
+   "kind": "city",
+   "x": 383.0,
+   "y": 462.0,
+   "start": false
+  },
+  {
+   "id": 121,
+   "name": "",
+   "kind": "segment",
+   "x": 357.0,
+   "y": 469.0,
+   "start": false
+  },
+  {
+   "id": 122,
+   "name": "fork6",
+   "kind": "fork",
+   "x": 345.0,
+   "y": 483.0,
+   "start": false
+  },
+  {
+   "id": 123,
+   "name": "fork7",
+   "kind": "fork",
+   "x": 335.0,
+   "y": 494.0,
+   "start": false
+  },
+  {
+   "id": 124,
+   "name": "",
+   "kind": "segment",
+   "x": 330.0,
+   "y": 509.0,
+   "start": false
+  },
+  {
+   "id": 125,
+   "name": "Dragon Mountain",
+   "kind": "city",
+   "x": 318.0,
+   "y": 533.0,
+   "start": false
+  },
+  {
+   "id": 126,
+   "name": "",
+   "kind": "segment",
+   "x": 292.0,
+   "y": 536.0,
+   "start": false
+  },
+  {
+   "id": 127,
+   "name": "",
+   "kind": "segment",
+   "x": 293.0,
+   "y": 515.0,
+   "start": false
+  },
+  {
+   "id": 128,
+   "name": "Victoria Falls",
+   "kind": "city",
+   "x": 292.0,
+   "y": 486.0,
+   "start": false
+  },
+  {
+   "id": 129,
+   "name": "",
+   "kind": "segment",
+   "x": 321.0,
+   "y": 484.0,
+   "start": false
+  },
+  {
+   "id": 130,
+   "name": "",
+   "kind": "segment",
+   "x": 328.0,
+   "y": 474.0,
+   "start": false
+  },
+  {
+   "id": 131,
+   "name": "",
+   "kind": "segment",
+   "x": 312.0,
+   "y": 464.0,
+   "start": false
+  },
+  {
+   "id": 132,
+   "name": "",
+   "kind": "segment",
+   "x": 294.0,
+   "y": 455.0,
+   "start": false
+  },
+  {
+   "id": 133,
+   "name": "",
+   "kind": "segment",
+   "x": 277.0,
+   "y": 446.0,
+   "start": false
+  },
+  {
+   "id": 134,
+   "name": "",
+   "kind": "segment",
+   "x": 255.0,
+   "y": 445.0,
+   "start": false
+  },
+  {
+   "id": 135,
+   "name": "",
+   "kind": "segment",
+   "x": 238.0,
+   "y": 446.0,
+   "start": false
+  },
+  {
+   "id": 136,
+   "name": "",
+   "kind": "segment",
+   "x": 217.0,
+   "y": 441.0,
+   "start": false
+  },
+  {
+   "id": 137,
+   "name": "",
+   "kind": "segment",
+   "x": 355.0,
+   "y": 412.0,
+   "start": false
+  },
+  {
+   "id": 138,
+   "name": "",
+   "kind": "segment",
+   "x": 356.0,
+   "y": 392.0,
+   "start": false
+  },
+  {
+   "id": 139,
+   "name": "",
+   "kind": "segment",
+   "x": 362.0,
+   "y": 373.0,
+   "start": false
+  },
+  {
+   "id": 140,
+   "name": "",
+   "kind": "segment",
+   "x": 365.0,
+   "y": 330.0,
+   "start": false
+  },
+  {
+   "id": 141,
+   "name": "",
+   "kind": "segment",
+   "x": 379.0,
+   "y": 323.0,
+   "start": false
+  },
+  {
+   "id": 142,
+   "name": "",
+   "kind": "segment",
+   "x": 265.0,
+   "y": 494.0,
+   "start": false
+  },
+  {
+   "id": 143,
+   "name": "",
+   "kind": "segment",
+   "x": 249.0,
+   "y": 493.0,
+   "start": false
+  },
+  {
+   "id": 144,
+   "name": "",
+   "kind": "segment",
+   "x": 230.0,
+   "y": 497.0,
+   "start": false
+  },
+  {
+   "id": 145,
+   "name": "Whalefish Bay",
+   "kind": "city",
+   "x": 210.0,
+   "y": 509.0,
+   "start": false
+  },
+  {
+   "id": 146,
+   "name": "",
+   "kind": "segment",
+   "x": 232.0,
+   "y": 528.0,
+   "start": false
+  },
+  {
+   "id": 147,
+   "name": "",
+   "kind": "segment",
+   "x": 235.0,
+   "y": 545.0,
+   "start": false
+  },
+  {
+   "id": 148,
+   "name": "",
+   "kind": "segment",
+   "x": 228.0,
+   "y": 562.0,
+   "start": false
+  },
+  {
+   "id": 149,
+   "name": "Cape Town",
+   "kind": "city",
+   "x": 235.0,
+   "y": 596.0,
+   "start": false
+  },
+  {
+   "id": 150,
+   "name": "",
+   "kind": "segment",
+   "x": 266.0,
+   "y": 604.0,
+   "start": false
+  },
+  {
+   "id": 151,
+   "name": "",
+   "kind": "segment",
+   "x": 284.0,
+   "y": 605.0,
+   "start": false
+  },
+  {
+   "id": 152,
+   "name": "",
+   "kind": "segment",
+   "x": 302.0,
+   "y": 604.0,
+   "start": false
+  },
+  {
+   "id": 153,
+   "name": "",
+   "kind": "segment",
+   "x": 320.0,
+   "y": 600.0,
+   "start": false
+  },
+  {
+   "id": 154,
+   "name": "",
+   "kind": "segment",
+   "x": 341.0,
+   "y": 592.0,
+   "start": false
+  },
+  {
+   "id": 155,
+   "name": "",
+   "kind": "segment",
+   "x": 361.0,
+   "y": 581.0,
+   "start": false
+  },
+  {
+   "id": 156,
+   "name": "",
+   "kind": "segment",
+   "x": 378.0,
+   "y": 569.0,
+   "start": false
+  },
+  {
+   "id": 157,
+   "name": "Cape st Marie",
+   "kind": "city",
+   "x": 402.0,
+   "y": 546.0,
+   "start": false
+  },
+  {
+   "id": 158,
+   "name": "",
+   "kind": "segment",
+   "x": 418.0,
+   "y": 526.0,
+   "start": false
+  },
+  {
+   "id": 159,
+   "name": "",
+   "kind": "segment",
+   "x": 421.0,
+   "y": 509.0,
+   "start": false
+  },
+  {
+   "id": 160,
+   "name": "",
+   "kind": "segment",
+   "x": 419.0,
+   "y": 491.0,
+   "start": false
+  },
+  {
+   "id": 161,
+   "name": "Tamatave",
+   "kind": "city",
+   "x": 445.0,
+   "y": 483.0,
+   "start": false
+  },
+  {
+   "id": 162,
+   "name": "",
+   "kind": "segment",
+   "x": 463.0,
+   "y": 459.0,
+   "start": false
+  },
+  {
+   "id": 163,
+   "name": "",
+   "kind": "segment",
+   "x": 467.0,
+   "y": 434.0,
+   "start": false
+  },
+  {
+   "id": 164,
+   "name": "",
+   "kind": "segment",
+   "x": 467.0,
+   "y": 410.0,
+   "start": false
+  },
+  {
+   "id": 165,
+   "name": "",
+   "kind": "segment",
+   "x": 469.0,
+   "y": 386.0,
+   "start": false
+  },
+  {
+   "id": 166,
+   "name": "",
+   "kind": "segment",
+   "x": 469.0,
+   "y": 365.0,
+   "start": false
+  },
+  {
+   "id": 167,
+   "name": "",
+   "kind": "segment",
+   "x": 469.0,
+   "y": 345.0,
+   "start": false
+  },
+  {
+   "id": 168,
+   "name": "",
+   "kind": "segment",
+   "x": 470.0,
+   "y": 322.0,
+   "start": false
+  },
+  {
+   "id": 169,
+   "name": "",
+   "kind": "segment",
+   "x": 459.0,
+   "y": 324.0,
+   "start": false
+  },
+  {
+   "id": 170,
+   "name": "",
+   "kind": "segment",
+   "x": 459.0,
+   "y": 345.0,
+   "start": false
+  },
+  {
+   "id": 171,
+   "name": "",
+   "kind": "segment",
+   "x": 452.0,
+   "y": 368.0,
+   "start": false
+  },
+  {
+   "id": 172,
+   "name": "",
+   "kind": "segment",
+   "x": 444.0,
+   "y": 386.0,
+   "start": false
+  },
+  {
+   "id": 173,
+   "name": "",
+   "kind": "segment",
+   "x": 434.0,
+   "y": 407.0,
+   "start": false
+  },
+  {
+   "id": 174,
+   "name": "",
+   "kind": "segment",
+   "x": 422.0,
+   "y": 423.0,
+   "start": false
+  },
+  {
+   "id": 175,
+   "name": "",
+   "kind": "segment",
+   "x": 407.0,
+   "y": 441.0,
+   "start": false
+  },
+  {
+   "id": 176,
+   "name": "",
+   "kind": "segment",
+   "x": 382.0,
+   "y": 496.0,
+   "start": false
+  },
+  {
+   "id": 177,
+   "name": "",
+   "kind": "segment",
+   "x": 381.0,
+   "y": 520.0,
+   "start": false
+  },
+  {
+   "id": 178,
+   "name": "",
+   "kind": "segment",
+   "x": 208.0,
+   "y": 586.0,
+   "start": false
+  },
+  {
+   "id": 179,
+   "name": "fork8",
+   "kind": "fork",
+   "x": 194.0,
+   "y": 575.0,
+   "start": false
+  },
+  {
+   "id": 180,
+   "name": "",
+   "kind": "segment",
+   "x": 188.0,
+   "y": 557.0,
+   "start": false
+  },
+  {
+   "id": 181,
+   "name": "",
+   "kind": "segment",
+   "x": 191.0,
+   "y": 536.0,
+   "start": false
+  },
+  {
+   "id": 182,
+   "name": "",
+   "kind": "segment",
+   "x": 180.0,
+   "y": 496.0,
+   "start": false
+  },
+  {
+   "id": 183,
+   "name": "",
+   "kind": "segment",
+   "x": 172.0,
+   "y": 476.0,
+   "start": false
+  },
+  {
+   "id": 184,
+   "name": "",
+   "kind": "segment",
+   "x": 175.0,
+   "y": 458.0,
+   "start": false
+  },
+  {
+   "id": 185,
+   "name": "",
+   "kind": "segment",
+   "x": 183.0,
+   "y": 438.0,
+   "start": false
+  },
+  {
+   "id": 186,
+   "name": "",
+   "kind": "segment",
+   "x": 179.0,
+   "y": 402.0,
+   "start": false
+  },
+  {
+   "id": 187,
+   "name": "",
+   "kind": "segment",
+   "x": 168.0,
+   "y": 386.0,
+   "start": false
+  },
+  {
+   "id": 188,
+   "name": "",
+   "kind": "segment",
+   "x": 162.0,
+   "y": 364.0,
+   "start": false
+  },
+  {
+   "id": 189,
+   "name": "fork9",
+   "kind": "fork",
+   "x": 160.0,
+   "y": 345.0,
+   "start": false
+  },
+  {
+   "id": 190,
+   "name": "",
+   "kind": "segment",
+   "x": 143.0,
+   "y": 346.0,
+   "start": false
+  },
+  {
+   "id": 191,
+   "name": "",
+   "kind": "segment",
+   "x": 119.0,
+   "y": 334.0,
+   "start": false
+  },
+  {
+   "id": 192,
+   "name": "",
+   "kind": "segment",
+   "x": 88.0,
+   "y": 332.0,
+   "start": false
+  },
+  {
+   "id": 193,
+   "name": "",
+   "kind": "segment",
+   "x": 67.0,
+   "y": 334.0,
+   "start": false
+  },
+  {
+   "id": 194,
+   "name": "",
+   "kind": "segment",
+   "x": 52.0,
+   "y": 329.0,
+   "start": false
+  },
+  {
+   "id": 195,
+   "name": "",
+   "kind": "segment",
+   "x": 38.0,
+   "y": 314.0,
+   "start": false
+  },
+  {
+   "id": 196,
+   "name": "",
+   "kind": "segment",
+   "x": 14.0,
+   "y": 274.0,
+   "start": false
+  },
+  {
+   "id": 197,
+   "name": "fork10",
+   "kind": "fork",
+   "x": 6.0,
+   "y": 263.0,
+   "start": false
+  },
+  {
+   "id": 198,
+   "name": "",
+   "kind": "segment",
+   "x": 4.0,
+   "y": 279.0,
+   "start": false
+  },
+  {
+   "id": 199,
+   "name": "",
+   "kind": "segment",
+   "x": 7.0,
+   "y": 300.0,
+   "start": false
+  },
+  {
+   "id": 200,
+   "name": "",
+   "kind": "segment",
+   "x": 8.0,
+   "y": 320.0,
+   "start": false
+  },
+  {
+   "id": 201,
+   "name": "",
+   "kind": "segment",
+   "x": 13.0,
+   "y": 340.0,
+   "start": false
+  },
+  {
+   "id": 202,
+   "name": "",
+   "kind": "segment",
+   "x": 21.0,
+   "y": 364.0,
+   "start": false
+  },
+  {
+   "id": 203,
+   "name": "",
+   "kind": "segment",
+   "x": 30.0,
+   "y": 383.0,
+   "start": false
+  },
+  {
+   "id": 204,
+   "name": "",
+   "kind": "segment",
+   "x": 38.0,
+   "y": 400.0,
+   "start": false
+  },
+  {
+   "id": 205,
+   "name": "bandit2",
+   "kind": "bandit",
+   "x": 52.0,
+   "y": 423.0,
+   "start": false
+  },
+  {
+   "id": 206,
+   "name": "St Helena",
+   "kind": "city",
+   "x": 76.0,
+   "y": 450.0,
+   "start": false
+  },
+  {
+   "id": 207,
+   "name": "bandit3",
+   "kind": "bandit",
+   "x": 83.0,
+   "y": 483.0,
+   "start": false
+  },
+  {
+   "id": 208,
+   "name": "",
+   "kind": "segment",
+   "x": 87.0,
+   "y": 505.0,
+   "start": false
+  },
+  {
+   "id": 209,
+   "name": "",
+   "kind": "segment",
+   "x": 94.0,
+   "y": 524.0,
+   "start": false
+  },
+  {
+   "id": 210,
+   "name": "",
+   "kind": "segment",
+   "x": 102.0,
+   "y": 545.0,
+   "start": false
+  },
+  {
+   "id": 211,
+   "name": "",
+   "kind": "segment",
+   "x": 115.0,
+   "y": 563.0,
+   "start": false
+  },
+  {
+   "id": 212,
+   "name": "",
+   "kind": "segment",
+   "x": 140.0,
+   "y": 577.0,
+   "start": false
+  },
+  {
+   "id": 213,
+   "name": "",
+   "kind": "segment",
+   "x": 172.0,
+   "y": 579.0,
+   "start": false
+  },
+  {
+   "id": 214,
+   "name": "",
+   "kind": "segment",
+   "x": 437.0,
+   "y": 280.0,
+   "start": false
+  },
+  {
+   "id": 215,
+   "name": "",
+   "kind": "segment",
+   "x": 421.0,
+   "y": 275.0,
+   "start": false
+  },
+  {
+   "id": 216,
+   "name": "",
+   "kind": "segment",
+   "x": 407.0,
+   "y": 260.0,
+   "start": false
+  },
+  {
+   "id": 217,
+   "name": "",
+   "kind": "segment",
+   "x": 396.0,
+   "y": 241.0,
+   "start": false
+  },
+  {
+   "id": 218,
+   "name": "",
+   "kind": "segment",
+   "x": 372.0,
+   "y": 202.0,
+   "start": false
+  },
+  {
+   "id": 219,
+   "name": "",
+   "kind": "segment",
+   "x": 360.0,
+   "y": 184.0,
+   "start": false
+  },
+  {
+   "id": 220,
+   "name": "",
+   "kind": "segment",
+   "x": 349.0,
+   "y": 166.0,
+   "start": false
+  }
+ ],
+ "edges": [
+  {
+   "a": 2,
+   "b": 3,
+   "route": 0
+  },
+  {
+   "a": 3,
+   "b": 4,
+   "route": 0
+  },
+  {
+   "a": 4,
+   "b": 5,
+   "route": 0
+  },
+  {
+   "a": 5,
+   "b": 6,
+   "route": 0
+  },
+  {
+   "a": 6,
+   "b": 7,
+   "route": 0
+  },
+  {
+   "a": 7,
+   "b": 8,
+   "route": 0
+  },
+  {
+   "a": 8,
+   "b": 9,
+   "route": 0
+  },
+  {
+   "a": 9,
+   "b": 10,
+   "route": 0
+  },
+  {
+   "a": 10,
+   "b": 11,
+   "route": 0
+  },
+  {
+   "a": 11,
+   "b": 12,
+   "route": 0
+  },
+  {
+   "a": 12,
+   "b": 13,
+   "route": 0
+  },
+  {
+   "a": 13,
+   "b": 14,
+   "route": 0
+  },
+  {
+   "a": 14,
+   "b": 15,
+   "route": 0
+  },
+  {
+   "a": 15,
+   "b": 16,
+   "route": 0
+  },
+  {
+   "a": 16,
+   "b": 17,
+   "route": 0
+  },
+  {
+   "a": 17,
+   "b": 18,
+   "route": 0
+  },
+  {
+   "a": 18,
+   "b": 19,
+   "route": 0
+  },
+  {
+   "a": 19,
+   "b": 20,
+   "route": 1
+  },
+  {
+   "a": 20,
+   "b": 21,
+   "route": 1
+  },
+  {
+   "a": 21,
+   "b": 22,
+   "route": 1
+  },
+  {
+   "a": 9,
+   "b": 22,
+   "route": 1
+  },
+  {
+   "a": 22,
+   "b": 23,
+   "route": 1
+  },
+  {
+   "a": 6,
+   "b": 23,
+   "route": 1
+  },
+  {
+   "a": 6,
+   "b": 24,
+   "route": 1
+  },
+  {
+   "a": 24,
+   "b": 25,
+   "route": 1
+  },
+  {
+   "a": 1,
+   "b": 25,
+   "route": 1
+  },
+  {
+   "a": 1,
+   "b": 26,
+   "route": 1
+  },
+  {
+   "a": 26,
+   "b": 27,
+   "route": 1
+  },
+  {
+   "a": 27,
+   "b": 28,
+   "route": 1
+  },
+  {
+   "a": 28,
+   "b": 29,
+   "route": 1
+  },
+  {
+   "a": 29,
+   "b": 30,
+   "route": 1
+  },
+  {
+   "a": 30,
+   "b": 31,
+   "route": 1
+  },
+  {
+   "a": 31,
+   "b": 32,
+   "route": 1
+  },
+  {
+   "a": 32,
+   "b": 33,
+   "route": 1
+  },
+  {
+   "a": 33,
+   "b": 34,
+   "route": 0
+  },
+  {
+   "a": 34,
+   "b": 35,
+   "route": 0
+  },
+  {
+   "a": 35,
+   "b": 36,
+   "route": 0
+  },
+  {
+   "a": 36,
+   "b": 37,
+   "route": 0
+  },
+  {
+   "a": 37,
+   "b": 38,
+   "route": 0
+  },
+  {
+   "a": 38,
+   "b": 39,
+   "route": 0
+  },
+  {
+   "a": 39,
+   "b": 40,
+   "route": 0
+  },
+  {
+   "a": 40,
+   "b": 41,
+   "route": 0
+  },
+  {
+   "a": 41,
+   "b": 42,
+   "route": 0
+  },
+  {
+   "a": 1,
+   "b": 42,
+   "route": 0
+  },
+  {
+   "a": 42,
+   "b": 43,
+   "route": 0
+  },
+  {
+   "a": 43,
+   "b": 44,
+   "route": 0
+  },
+  {
+   "a": 44,
+   "b": 45,
+   "route": 0
+  },
+  {
+   "a": 45,
+   "b": 46,
+   "route": 0
+  },
+  {
+   "a": 46,
+   "b": 47,
+   "route": 0
+  },
+  {
+   "a": 47,
+   "b": 48,
+   "route": 0
+  },
+  {
+   "a": 48,
+   "b": 49,
+   "route": 0
+  },
+  {
+   "a": 49,
+   "b": 50,
+   "route": 0
+  },
+  {
+   "a": 50,
+   "b": 51,
+   "route": 0
+  },
+  {
+   "a": 51,
+   "b": 52,
+   "route": 0
+  },
+  {
+   "a": 52,
+   "b": 53,
+   "route": 0
+  },
+  {
+   "a": 53,
+   "b": 54,
+   "route": 0
+  },
+  {
+   "a": 54,
+   "b": 55,
+   "route": 0
+  },
+  {
+   "a": 55,
+   "b": 56,
+   "route": 0
+  },
+  {
+   "a": 15,
+   "b": 56,
+   "route": 0
+  },
+  {
+   "a": 33,
+   "b": 57,
+   "route": 0
+  },
+  {
+   "a": 57,
+   "b": 58,
+   "route": 0
+  },
+  {
+   "a": 58,
+   "b": 59,
+   "route": 0
+  },
+  {
+   "a": 59,
+   "b": 60,
+   "route": 0
+  },
+  {
+   "a": 60,
+   "b": 61,
+   "route": 0
+  },
+  {
+   "a": 61,
+   "b": 62,
+   "route": 0
+  },
+  {
+   "a": 62,
+   "b": 63,
+   "route": 0
+  },
+  {
+   "a": 63,
+   "b": 64,
+   "route": 0
+  },
+  {
+   "a": 64,
+   "b": 65,
+   "route": 0
+  },
+  {
+   "a": 63,
+   "b": 66,
+   "route": 0
+  },
+  {
+   "a": 66,
+   "b": 67,
+   "route": 0
+  },
+  {
+   "a": 67,
+   "b": 68,
+   "route": 0
+  },
+  {
+   "a": 68,
+   "b": 69,
+   "route": 0
+  },
+  {
+   "a": 69,
+   "b": 70,
+   "route": 0
+  },
+  {
+   "a": 70,
+   "b": 71,
+   "route": 0
+  },
+  {
+   "a": 71,
+   "b": 72,
+   "route": 0
+  },
+  {
+   "a": 72,
+   "b": 73,
+   "route": 0
+  },
+  {
+   "a": 73,
+   "b": 74,
+   "route": 0
+  },
+  {
+   "a": 74,
+   "b": 75,
+   "route": 0
+  },
+  {
+   "a": 75,
+   "b": 76,
+   "route": 0
+  },
+  {
+   "a": 76,
+   "b": 77,
+   "route": 0
+  },
+  {
+   "a": 77,
+   "b": 78,
+   "route": 0
+  },
+  {
+   "a": 78,
+   "b": 79,
+   "route": 0
+  },
+  {
+   "a": 79,
+   "b": 80,
+   "route": 0
+  },
+  {
+   "a": 80,
+   "b": 81,
+   "route": 0
+  },
+  {
+   "a": 81,
+   "b": 82,
+   "route": 0
+  },
+  {
+   "a": 54,
+   "b": 82,
+   "route": 0
+  },
+  {
+   "a": 54,
+   "b": 83,
+   "route": 0
+  },
+  {
+   "a": 83,
+   "b": 84,
+   "route": 0
+  },
+  {
+   "a": 84,
+   "b": 85,
+   "route": 0
+  },
+  {
+   "a": 75,
+   "b": 85,
+   "route": 0
+  },
+  {
+   "a": 75,
+   "b": 86,
+   "route": 0
+  },
+  {
+   "a": 86,
+   "b": 87,
+   "route": 0
+  },
+  {
+   "a": 87,
+   "b": 88,
+   "route": 0
+  },
+  {
+   "a": 88,
+   "b": 89,
+   "route": 0
+  },
+  {
+   "a": 89,
+   "b": 90,
+   "route": 0
+  },
+  {
+   "a": 90,
+   "b": 91,
+   "route": 0
+  },
+  {
+   "a": 91,
+   "b": 92,
+   "route": 0
+  },
+  {
+   "a": 92,
+   "b": 93,
+   "route": 0
+  },
+  {
+   "a": 93,
+   "b": 94,
+   "route": 0
+  },
+  {
+   "a": 94,
+   "b": 95,
+   "route": 0
+  },
+  {
+   "a": 95,
+   "b": 96,
+   "route": 0
+  },
+  {
+   "a": 96,
+   "b": 97,
+   "route": 0
+  },
+  {
+   "a": 97,
+   "b": 98,
+   "route": 0
+  },
+  {
+   "a": 98,
+   "b": 99,
+   "route": 0
+  },
+  {
+   "a": 99,
+   "b": 100,
+   "route": 0
+  },
+  {
+   "a": 100,
+   "b": 101,
+   "route": 0
+  },
+  {
+   "a": 54,
+   "b": 101,
+   "route": 0
+  },
+  {
+   "a": 54,
+   "b": 102,
+   "route": 0
+  },
+  {
+   "a": 102,
+   "b": 103,
+   "route": 0
+  },
+  {
+   "a": 103,
+   "b": 104,
+   "route": 0
+  },
+  {
+   "a": 104,
+   "b": 105,
+   "route": 0
+  },
+  {
+   "a": 105,
+   "b": 106,
+   "route": 0
+  },
+  {
+   "a": 106,
+   "b": 107,
+   "route": 0
+  },
+  {
+   "a": 107,
+   "b": 108,
+   "route": 0
+  },
+  {
+   "a": 108,
+   "b": 109,
+   "route": 0
+  },
+  {
+   "a": 109,
+   "b": 110,
+   "route": 0
+  },
+  {
+   "a": 110,
+   "b": 111,
+   "route": 0
+  },
+  {
+   "a": 111,
+   "b": 112,
+   "route": 0
+  },
+  {
+   "a": 112,
+   "b": 113,
+   "route": 0
+  },
+  {
+   "a": 113,
+   "b": 114,
+   "route": 0
+  },
+  {
+   "a": 114,
+   "b": 115,
+   "route": 0
+  },
+  {
+   "a": 115,
+   "b": 116,
+   "route": 0
+  },
+  {
+   "a": 116,
+   "b": 117,
+   "route": 0
+  },
+  {
+   "a": 117,
+   "b": 118,
+   "route": 0
+  },
+  {
+   "a": 118,
+   "b": 119,
+   "route": 0
+  },
+  {
+   "a": 119,
+   "b": 120,
+   "route": 0
+  },
+  {
+   "a": 120,
+   "b": 121,
+   "route": 0
+  },
+  {
+   "a": 121,
+   "b": 122,
+   "route": 0
+  },
+  {
+   "a": 122,
+   "b": 123,
+   "route": 0
+  },
+  {
+   "a": 123,
+   "b": 124,
+   "route": 0
+  },
+  {
+   "a": 124,
+   "b": 125,
+   "route": 0
+  },
+  {
+   "a": 125,
+   "b": 126,
+   "route": 0
+  },
+  {
+   "a": 126,
+   "b": 127,
+   "route": 0
+  },
+  {
+   "a": 127,
+   "b": 128,
+   "route": 0
+  },
+  {
+   "a": 128,
+   "b": 129,
+   "route": 0
+  },
+  {
+   "a": 123,
+   "b": 129,
+   "route": 0
+  },
+  {
+   "a": 122,
+   "b": 130,
+   "route": 0
+  },
+  {
+   "a": 130,
+   "b": 131,
+   "route": 0
+  },
+  {
+   "a": 131,
+   "b": 132,
+   "route": 0
+  },
+  {
+   "a": 132,
+   "b": 133,
+   "route": 0
+  },
+  {
+   "a": 133,
+   "b": 134,
+   "route": 0
+  },
+  {
+   "a": 134,
+   "b": 135,
+   "route": 0
+  },
+  {
+   "a": 135,
+   "b": 136,
+   "route": 0
+  },
+  {
+   "a": 90,
+   "b": 136,
+   "route": 0
+  },
+  {
+   "a": 118,
+   "b": 137,
+   "route": 0
+  },
+  {
+   "a": 137,
+   "b": 138,
+   "route": 0
+  },
+  {
+   "a": 138,
+   "b": 139,
+   "route": 0
+  },
+  {
+   "a": 98,
+   "b": 139,
+   "route": 0
+  },
+  {
+   "a": 98,
+   "b": 140,
+   "route": 0
+  },
+  {
+   "a": 140,
+   "b": 141,
+   "route": 0
+  },
+  {
+   "a": 108,
+   "b": 141,
+   "route": 0
+  },
+  {
+   "a": 128,
+   "b": 142,
+   "route": 0
+  },
+  {
+   "a": 142,
+   "b": 143,
+   "route": 0
+  },
+  {
+   "a": 143,
+   "b": 144,
+   "route": 0
+  },
+  {
+   "a": 144,
+   "b": 145,
+   "route": 0
+  },
+  {
+   "a": 145,
+   "b": 146,
+   "route": 0
+  },
+  {
+   "a": 146,
+   "b": 147,
+   "route": 0
+  },
+  {
+   "a": 147,
+   "b": 148,
+   "route": 0
+  },
+  {
+   "a": 148,
+   "b": 149,
+   "route": 0
+  },
+  {
+   "a": 149,
+   "b": 150,
+   "route": 1
+  },
+  {
+   "a": 150,
+   "b": 151,
+   "route": 1
+  },
+  {
+   "a": 151,
+   "b": 152,
+   "route": 1
+  },
+  {
+   "a": 152,
+   "b": 153,
+   "route": 1
+  },
+  {
+   "a": 153,
+   "b": 154,
+   "route": 1
+  },
+  {
+   "a": 154,
+   "b": 155,
+   "route": 1
+  },
+  {
+   "a": 155,
+   "b": 156,
+   "route": 1
+  },
+  {
+   "a": 156,
+   "b": 157,
+   "route": 1
+  },
+  {
+   "a": 157,
+   "b": 158,
+   "route": 0
+  },
+  {
+   "a": 158,
+   "b": 159,
+   "route": 0
+  },
+  {
+   "a": 159,
+   "b": 160,
+   "route": 0
+  },
+  {
+   "a": 160,
+   "b": 161,
+   "route": 0
+  },
+  {
+   "a": 161,
+   "b": 162,
+   "route": 1
+  },
+  {
+   "a": 162,
+   "b": 163,
+   "route": 1
+  },
+  {
+   "a": 163,
+   "b": 164,
+   "route": 1
+  },
+  {
+   "a": 164,
+   "b": 165,
+   "route": 1
+  },
+  {
+   "a": 165,
+   "b": 166,
+   "route": 1
+  },
+  {
+   "a": 166,
+   "b": 167,
+   "route": 1
+  },
+  {
+   "a": 167,
+   "b": 168,
+   "route": 1
+  },
+  {
+   "a": 111,
+   "b": 168,
+   "route": 1
+  },
+  {
+   "a": 111,
+   "b": 169,
+   "route": 1
+  },
+  {
+   "a": 169,
+   "b": 170,
+   "route": 1
+  },
+  {
+   "a": 170,
+   "b": 171,
+   "route": 1
+  },
+  {
+   "a": 171,
+   "b": 172,
+   "route": 1
+  },
+  {
+   "a": 172,
+   "b": 173,
+   "route": 1
+  },
+  {
+   "a": 173,
+   "b": 174,
+   "route": 1
+  },
+  {
+   "a": 174,
+   "b": 175,
+   "route": 1
+  },
+  {
+   "a": 120,
+   "b": 175,
+   "route": 1
+  },
+  {
+   "a": 120,
+   "b": 176,
+   "route": 1
+  },
+  {
+   "a": 176,
+   "b": 177,
+   "route": 1
+  },
+  {
+   "a": 157,
+   "b": 177,
+   "route": 1
+  },
+  {
+   "a": 149,
+   "b": 178,
+   "route": 1
+  },
+  {
+   "a": 178,
+   "b": 179,
+   "route": 1
+  },
+  {
+   "a": 179,
+   "b": 180,
+   "route": 1
+  },
+  {
+   "a": 180,
+   "b": 181,
+   "route": 1
+  },
+  {
+   "a": 145,
+   "b": 181,
+   "route": 1
+  },
+  {
+   "a": 145,
+   "b": 182,
+   "route": 1
+  },
+  {
+   "a": 182,
+   "b": 183,
+   "route": 1
+  },
+  {
+   "a": 183,
+   "b": 184,
+   "route": 1
+  },
+  {
+   "a": 184,
+   "b": 185,
+   "route": 1
+  },
+  {
+   "a": 90,
+   "b": 185,
+   "route": 1
+  },
+  {
+   "a": 90,
+   "b": 186,
+   "route": 1
+  },
+  {
+   "a": 186,
+   "b": 187,
+   "route": 1
+  },
+  {
+   "a": 187,
+   "b": 188,
+   "route": 1
+  },
+  {
+   "a": 188,
+   "b": 189,
+   "route": 1
+  },
+  {
+   "a": 72,
+   "b": 189,
+   "route": 1
+  },
+  {
+   "a": 189,
+   "b": 190,
+   "route": 1
+  },
+  {
+   "a": 190,
+   "b": 191,
+   "route": 1
+  },
+  {
+   "a": 65,
+   "b": 191,
+   "route": 1
+  },
+  {
+   "a": 65,
+   "b": 192,
+   "route": 1
+  },
+  {
+   "a": 192,
+   "b": 193,
+   "route": 1
+  },
+  {
+   "a": 193,
+   "b": 194,
+   "route": 1
+  },
+  {
+   "a": 194,
+   "b": 195,
+   "route": 1
+  },
+  {
+   "a": 60,
+   "b": 195,
+   "route": 1
+  },
+  {
+   "a": 60,
+   "b": 196,
+   "route": 1
+  },
+  {
+   "a": 196,
+   "b": 197,
+   "route": 1
+  },
+  {
+   "a": 33,
+   "b": 197,
+   "route": 1
+  },
+  {
+   "a": 197,
+   "b": 198,
+   "route": 1
+  },
+  {
+   "a": 198,
+   "b": 199,
+   "route": 1
+  },
+  {
+   "a": 199,
+   "b": 200,
+   "route": 1
+  },
+  {
+   "a": 200,
+   "b": 201,
+   "route": 1
+  },
+  {
+   "a": 201,
+   "b": 202,
+   "route": 1
+  },
+  {
+   "a": 202,
+   "b": 203,
+   "route": 1
+  },
+  {
+   "a": 203,
+   "b": 204,
+   "route": 1
+  },
+  {
+   "a": 204,
+   "b": 205,
+   "route": 1
+  },
+  {
+   "a": 205,
+   "b": 206,
+   "route": 1
+  },
+  {
+   "a": 206,
+   "b": 207,
+   "route": 1
+  },
+  {
+   "a": 207,
+   "b": 208,
+   "route": 1
+  },
+  {
+   "a": 208,
+   "b": 209,
+   "route": 1
+  },
+  {
+   "a": 209,
+   "b": 210,
+   "route": 1
+  },
+  {
+   "a": 210,
+   "b": 211,
+   "route": 1
+  },
+  {
+   "a": 211,
+   "b": 212,
+   "route": 1
+  },
+  {
+   "a": 212,
+   "b": 213,
+   "route": 1
+  },
+  {
+   "a": 179,
+   "b": 213,
+   "route": 1
+  },
+  {
+   "a": 111,
+   "b": 214,
+   "route": 1
+  },
+  {
+   "a": 214,
+   "b": 215,
+   "route": 1
+  },
+  {
+   "a": 215,
+   "b": 216,
+   "route": 1
+  },
+  {
+   "a": 216,
+   "b": 217,
+   "route": 1
+  },
+  {
+   "a": 105,
+   "b": 217,
+   "route": 1
+  },
+  {
+   "a": 105,
+   "b": 218,
+   "route": 1
+  },
+  {
+   "a": 218,
+   "b": 219,
+   "route": 1
+  },
+  {
+   "a": 219,
+   "b": 220,
+   "route": 1
+  },
+  {
+   "a": 19,
+   "b": 220,
+   "route": 1
+  },
+  {
+   "a": 19,
+   "b": 105,
+   "route": 3
+  },
+  {
+   "a": 98,
+   "b": 105,
+   "route": 3
+  },
+  {
+   "a": 98,
+   "b": 111,
+   "route": 3
+  },
+  {
+   "a": 111,
+   "b": 161,
+   "route": 3
+  },
+  {
+   "a": 149,
+   "b": 161,
+   "route": 3
+  },
+  {
+   "a": 149,
+   "b": 157,
+   "route": 3
+  },
+  {
+   "a": 125,
+   "b": 149,
+   "route": 3
+  },
+  {
+   "a": 98,
+   "b": 125,
+   "route": 3
+  },
+  {
+   "a": 54,
+   "b": 105,
+   "route": 3
+  },
+  {
+   "a": 9,
+   "b": 54,
+   "route": 3
+  },
+  {
+   "a": 1,
+   "b": 9,
+   "route": 3
+  },
+  {
+   "a": 1,
+   "b": 41,
+   "route": 3
+  },
+  {
+   "a": 41,
+   "b": 60,
+   "route": 3
+  },
+  {
+   "a": 60,
+   "b": 206,
+   "route": 3
+  },
+  {
+   "a": 149,
+   "b": 206,
+   "route": 3
+  },
+  {
+   "a": 94,
+   "b": 149,
+   "route": 3
+  },
+  {
+   "a": 54,
+   "b": 94,
+   "route": 3
+  },
+  {
+   "a": 9,
+   "b": 65,
+   "route": 3
+  },
+  {
+   "a": 41,
+   "b": 65,
+   "route": 3
+  },
+  {
+   "a": 65,
+   "b": 145,
+   "route": 3
+  },
+  {
+   "a": 90,
+   "b": 145,
+   "route": 3
+  },
+  {
+   "a": 65,
+   "b": 90,
+   "route": 3
+  },
+  {
+   "a": 1,
+   "b": 2,
+   "route": 0
+  }
+ ]
+}

@@ -87,7 +87,7 @@ class Game:
     def end_turn(self) -> None:
         p = self.players[self.current]
         node = self.board.get_node_by_id(p.location)
-        if node is not None and node.name.startswith("bandit"):
+        if node is not None and node.kind == "bandit":
             p.bandit_stuck = True           # ended the turn on a bandit node
         p.moves = 0
 
