@@ -243,7 +243,7 @@ class Game:
         goal = "distToStart" if player.available_to_win else "distValue"
         for action in move_actions:
             obs.extend([
-                float(np.clip(getattr(current_node, goal) - getattr(action, goal), -1, 1)), 
+                float(np.clip((getattr(current_node, goal) - getattr(action, goal)) / 8, -1, 1)), 
                 1 - np.clip(action.distToStart / self.maxHeatStartValue, 0, 1),
                 1 - np.clip(action.heatValue / self.maxHeatStartValue, 0, 1),
                 np.clip(action.cost / 300, 0, 1),

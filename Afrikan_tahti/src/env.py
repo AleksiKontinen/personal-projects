@@ -16,8 +16,12 @@ from gymnasium import spaces
 from game import Game
 from players import BasePlayer
 
+from opponents import OpponentMix
+
+from collections import deque
+
 N_ACTIONS = 12                  # slots 1..12  ->  action index 0..11
-MAX_OPPONENT_ACTIONS = 200     # safety net against a rule bug that never ends a turn
+MAX_TURN_ACTIONS = 60     # 8 at most, otherways rules are broken
 
 OpponentPolicy = Callable[[Game, BasePlayer], int]   # returns a legal slot (1..12)
 
@@ -79,6 +83,7 @@ class AfrikanTahtiEnv(gym.Env):
         rewards: RewardConfig | None = None,
         max_turns: int = 60,
         randomize_seat: bool = True,
+        mix: OpponentMix | None = None,
     ):
         super().__init__()
         self.game = Game(player_count)
@@ -88,10 +93,13 @@ class AfrikanTahtiEnv(gym.Env):
         self.randomize_seat = randomize_seat
         self.agent_idx = 0
         self._mask = np.ones(N_ACTIONS, dtype=bool)
-
         self.action_space = spaces.Discrete(N_ACTIONS)
         obs_dim = self._probe_obs_dim()
         self.observation_space = spaces.Box(-1.0, 1.0, shape=(obs_dim,), dtype=np.float32)
+        self.mix = mix
+        self.seat_policies: dict[int, OpponentPolicy] = {}
+        self.seat_names: dict[int, str] = {}
+        self.opponent_names: list[str] = []
 
     # ---- gym API
     def reset(self, *, seed: int | None = None, options=None):
@@ -101,6 +109,7 @@ class AfrikanTahtiEnv(gym.Env):
             self.agent_idx = int(self.np_random.integers(self.game.player_count))
         else:
             self.agent_idx = 0
+        self._assign_opponents()
         self._play_opponents()
         return self._observe(), self._info()
 
@@ -144,11 +153,41 @@ class AfrikanTahtiEnv(gym.Env):
 
     def _play_opponents(self) -> None:
         g = self.game
-        for _ in range(MAX_OPPONENT_ACTIONS):
-            if g.winner is not None or g.current == self.agent_idx:
-                return
-            g.step(self.opponent(g, g.players[g.current]))
-        raise RuntimeError("opponents never handed the turn back (rule bug?)")
+        recent = deque(maxlen=12)
+        turn_key, in_turn = None, 0
+        while g.winner is None and g.current != self.agent_idx:
+            key = (g.turn, g.current)
+            in_turn = in_turn + 1 if key == turn_key else 1
+            turn_key = key
+            if in_turn > MAX_TURN_ACTIONS:
+                raise RuntimeError(self._turn_report(recent))
+            p = g.players[g.current]
+            slot = self.seat_policies.get(g.current, self.opponent)(g, p)
+            recent.append((g.turn, p.id, slot, p.location, p.moves, p.money))
+            g.step(slot)
+
+    def _turn_report(self, recent) -> str:
+        g = self.game
+        p = g.players[g.current]
+        name = lambda i: g.board.get_node_by_id(i).name
+        lines = [f"P{p.id} ({self.seat_names.get(g.current, 'opponent')}) took more than "
+                 f"{MAX_TURN_ACTIONS} actions in one turn (rule bug?)",
+                 f"state: moves={p.moves} money={p.money} stun={p.stun} "
+                 f"paid_sea={p.paid_sea} free_sea={p.free_sea} bandit_stuck={p.bandit_stuck}",
+                 "last actions (turn, player, slot, node, moves, money):"]
+        lines += [f"  t{t} P{pid} slot {s} @ {name(loc)} moves={m} money={mo}"
+                  for t, pid, s, loc, m, mo in recent]
+        return "\n".join(lines)
+
+    def _assign_opponents(self) -> None:
+        self.seat_policies, self.seat_names, self.opponent_names = {}, {}, []
+        if self.mix is None:
+            return
+        for i in range(self.game.player_count):
+            if i != self.agent_idx:
+                self.seat_policies[i], name = self.mix.draw(self.np_random)
+                self.seat_names[i] = name
+                self.opponent_names.append(name)
 
     def _reward(self, info: dict) -> float:
         r = self.rewards
@@ -191,4 +230,5 @@ class AfrikanTahtiEnv(gym.Env):
             "winner": g.winner,
             "agent": self.agent_idx,
             "agent_won": g.winner == self.agent_idx,
+            "opponents": tuple(self.opponent_names),
         }

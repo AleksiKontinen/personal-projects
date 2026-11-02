@@ -277,9 +277,9 @@ def run_viewer(data, nodes, adj, order, out_path, args):
                     animate = not animate
                 elif k == pygame.K_l:
                     labels = not labels
-                elif k == pygame.K_LEFTBRACKET:
+                elif k == pygame.K_DOWN:
                     speed = max(2.0, speed / 1.5)
-                elif k == pygame.K_RIGHTBRACKET:
+                elif k == pygame.K_UP:
                     speed = min(600.0, speed * 1.5)
                 elif k in (pygame.K_EQUALS, pygame.K_PLUS, pygame.K_KP_PLUS,
                            pygame.K_MINUS, pygame.K_KP_MINUS):
@@ -306,7 +306,7 @@ def run_viewer(data, nodes, adj, order, out_path, args):
         longest = max((j[3] for j in stats[1]), default=0)
         hud = [f"{len(order)} LEDs   jumps {len(stats[1])}   links {unit(stats[0])}   "
                f"longest jump {unit(longest)}",
-               "space animate   [ ] speed   r search again   l labels   + - zoom"]
+               "space animate   up/down speed   r search again   l labels   + - zoom"]
         draw(screen, bg, font, scale, nodes, order, adj, hover, int(head) if animate else None,
              labels, hud)
         pygame.display.flip()

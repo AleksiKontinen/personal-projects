@@ -98,9 +98,16 @@ class ModelPolicy:
 
 
 def build_policies(args):
-    seats = args.seats.split(",") if args.seats else (
-        ["model"] + ["greedy"] * (args.players - 1) if args.model else ["greedy"] * args.players)
-    seats = (seats + ["greedy"] * args.players)[:args.players]
+    if args.seats:
+        seats = args.seats.split(",")
+    elif args.model:
+        seats = ["greedy"] * args.players
+        if args.model_seat >= 0:
+            seats[args.model_seat] = "model"
+        else:
+            seats[0] = "model"
+    else:
+        seats = ["greedy"] * args.players
     cache, policies = {}, []
     for s in seats:
         if s not in cache:
@@ -116,6 +123,15 @@ def build_policies(args):
                 raise SystemExit(f"unknown seat type {s!r} (model, greedy, random)")
         policies.append(cache[s])
     return policies
+
+
+def randomize_model_seat(policies, args, seed):
+    if args.seats or args.model_seat != -1 or not args.model:
+        return
+
+    model = next(policy for policy in policies if policy.name == "model")
+    policies[:] = [GreedyPolicy() for _ in policies]
+    policies[random.Random(seed).randrange(len(policies))] = model
 
 
 # --------------------------------------------------------------- invariants
@@ -191,6 +207,7 @@ class App:
     def reset(self, seed):
         self.seed = seed
         self.game.reset(seed)
+        randomize_model_seat(self.policies, self.args, seed)
         self.log = []
         self.popups = []
         self.pending = None
@@ -448,7 +465,7 @@ class App:
             n = board.nodes[hover]
             screen.blit(font.render(f"#{n.id} {short(n)} {n.kind} dV{n.distValue} dS{n.distToStart} "
                                     f"heat{n.heatValue} {n.token}", True, (255, 255, 120)), (x0 + 8, yb))
-        screen.blit(font.render("space run  n step  [ ] speed  r seed  v view  t tokens", True,
+        screen.blit(font.render("space run  n step  up/down speed  r seed  v view  t tokens", True,
                                 (120, 120, 120)), (x0 + 8, yb + line_h))
 
     # ---- main loop
@@ -498,9 +515,9 @@ class App:
                         self.running = not self.running and not self.over()
                     elif k in (pygame.K_n, pygame.K_RIGHT):
                         step_once = True
-                    elif k == pygame.K_LEFTBRACKET:
+                    elif k == pygame.K_DOWN:
                         self.speed = max(0.5, self.speed / 1.5)
-                    elif k == pygame.K_RIGHTBRACKET:
+                    elif k == pygame.K_UP:
                         self.speed = min(300.0, self.speed * 1.5)
                     elif k == pygame.K_r:
                         self.reset(self.seed if ev.mod & pygame.KMOD_SHIFT else self.seed + 1)
@@ -561,6 +578,7 @@ def check_mode(args):
     for i in range(args.check):
         seed = args.seed + i
         g.reset(seed)
+        randomize_model_seat(policies, args, seed)
         actions = 0
         while g.winner is None and g.turn < args.max_turns:
             p = g.players[g.current]
@@ -591,6 +609,7 @@ def parse_args():
     ap.add_argument("--players", type=int, default=5)
     ap.add_argument("--seats", help="comma list of model/greedy/random, one per seat")
     ap.add_argument("--model", help="path to a MaskablePPO .zip")
+    ap.add_argument("--model-seat", type=int, default=0, help="seat of the model; -1 = random per seed")
     ap.add_argument("--sample", action="store_true", help="model samples instead of argmax")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--map", help="map.json (default: next to board.py)")

@@ -11,6 +11,13 @@ import numpy as np
 from env import AfrikanTahtiEnv, greedy_opponent
 from collections import Counter
 
+from opponents import NumpyActor, OpponentMix
+from stable_baselines3.common.callbacks import CheckpointCallback
+import argparse
+import glob
+
+POOL_DIR = "models/pool"
+
 PLAYERS = 5
 MODEL_PATH = "models/afrikan_ppo"
 
@@ -32,24 +39,51 @@ def check() -> None:
     print(f"random episode: {steps} agent steps, return {total:.2f}, info {info}")
 
 
-def train(timesteps: int = 500_000) -> None:
+def train(timesteps=500_000, mix=True, p_greedy=0.4, window=None, save_every=25_000,
+          seed=None, lr=3e-4, lr_decay=False, ent=0.01, n_steps=512, batch=256,
+          net=64, lam=0.95) -> None:
     from sb3_contrib import MaskablePPO
     from stable_baselines3.common.env_util import make_vec_env
 
-    env = make_vec_env(AfrikanTahtiEnv, n_envs=8, env_kwargs={"player_count": PLAYERS})
+    n_envs = 8
+    kwargs = {"player_count": PLAYERS}
+    callback = None
+    if mix:
+        for f in glob.glob(os.path.join(POOL_DIR, "ckpt_*_steps.zip")):
+            os.remove(f)                      # stale checkpoints from an earlier run
+        kwargs["mix"] = OpponentMix(POOL_DIR, greedy=greedy_opponent,
+                                    p_greedy=p_greedy, window=window)
+        callback = CheckpointCallback(max(save_every // n_envs, 1), POOL_DIR, name_prefix="ckpt")
+    env = make_vec_env(AfrikanTahtiEnv, n_envs=n_envs, env_kwargs=kwargs)
     model = MaskablePPO(
-        "MlpPolicy",
-        env,
-        n_steps=512,
-        batch_size=256,
-        gamma=0.99,          # long episodes, sparse win reward
-        ent_coef=0.01,        # keep exploring
-        verbose=1,
-        tensorboard_log="runs",
+        "MlpPolicy", env,
+        learning_rate=(lambda f: lr * f) if lr_decay else lr,
+        n_steps=n_steps, batch_size=batch, gamma=0.99, gae_lambda=lam, ent_coef=ent,
+        policy_kwargs=dict(net_arch=dict(pi=[net, net], vf=[net, net])),
+        seed=seed, verbose=1, tensorboard_log="runs",
     )
-    model.learn(total_timesteps=timesteps)
+    model.learn(total_timesteps=timesteps, callback=callback)
     os.makedirs("models", exist_ok=True)
     model.save(MODEL_PATH)
+
+
+def verify(episodes: int = 20) -> None:
+    from sb3_contrib import MaskablePPO
+    model = MaskablePPO.load(MODEL_PATH, device="cpu")
+    actor = NumpyActor.from_model(model)
+    env = AfrikanTahtiEnv(player_count=PLAYERS)
+    n = bad = 0
+    for i in range(episodes):
+        obs, _ = env.reset(seed=i)
+        done = False
+        while not done:
+            mask = env.action_masks()
+            a, _ = model.predict(obs, action_masks=mask, deterministic=True)
+            n += 1
+            bad += int(a) != actor.act(obs, mask)
+            obs, _, term, trunc, _ = env.step(int(a))
+            done = term or trunc
+    print(f"{n} decisions, {bad} mismatches")
 
 
 def win_rate(pick_action, episodes: int = 1000) -> tuple[float, float, float]:
@@ -67,7 +101,7 @@ def win_rate(pick_action, episodes: int = 1000) -> tuple[float, float, float]:
     return wins / episodes, float(np.mean(turns)), can_win / episodes
 
 
-def evaluate() -> None:
+def evaluate(episodes: int = 1000) -> None:
     from sb3_contrib import MaskablePPO
 
     model = MaskablePPO.load(MODEL_PATH)
@@ -85,7 +119,7 @@ def evaluate() -> None:
 
     print(f"fair share with {PLAYERS} players: {1 / PLAYERS:.2f}")
     for name, fn in (("trained", trained), ("random-legal", random_legal), ("greedy", greedy)):
-        rate, turns, cw = win_rate(fn)
+        rate, turns, cw = win_rate(fn, episodes)
         print(f"{name:13s} win rate {rate:.2f}   could-win {cw:.2f}   mean turns {turns:.1f}")
 
 def funnel(pick_action, episodes: int = 1000, label: str = "") -> None:
@@ -211,6 +245,11 @@ def ready_audit(episodes: int = 1000) -> None:
                 if me.moves > 0:
                     c["decisions_with_moves"] += 1
                     c["improving_available"] += bool(improving)
+                    air = [x for x in legal if x.kind == "move" and x.route == 3]
+                    best_air = max((here - g.board.get_node_by_id(x.target).distToStart for x in air), default=0)
+                    if best_air > me.moves:                        # flying beats walking all remaining moves
+                        c["air_beats_walk"] += 1
+                        c["air_beats_walk_taken"] += bool(a.kind == "move" and a.route == 3)
                     if a.kind == "move" and a.route != 3:
                         d = here - g.board.get_node_by_id(a.target).distToStart
                         c["walk_improve" if d > 0 else "walk_flat" if d == 0 else "walk_worse"] += 1
@@ -229,5 +268,31 @@ def ready_audit(episodes: int = 1000) -> None:
             done = term or trunc
     print(dict(c))
 
+
+
 if __name__ == "__main__":
-    {"check": check, "train": train, "eval": evaluate, "diag": diagnose, "greedy": greedy_return, "funnel": funnel_cmd, "audit": ready_audit}[sys.argv[1] if len(sys.argv) > 1 else "check"]()
+    cmds = ["check", "train", "eval", "diag", "greedy", "funnel", "audit", "verify"]
+    ap = argparse.ArgumentParser()
+    ap.add_argument("cmd", nargs="?", default="check", choices=cmds)
+    ap.add_argument("--model", default=MODEL_PATH)
+    ap.add_argument("--steps", type=int, default=500_000)
+    ap.add_argument("--no-mix", action="store_true")
+    ap.add_argument("--p-greedy", type=float, default=0.4)
+    ap.add_argument("--window", type=int, default=None)
+    ap.add_argument("--save-every", type=int, default=25_000)
+    ap.add_argument("--episodes", type=int, default=1000)
+    ap.add_argument("--seed", type=int, default=None)
+    ap.add_argument("--lr", type=float, default=3e-4)
+    ap.add_argument("--lr-decay", action="store_true")
+    ap.add_argument("--ent", type=float, default=0.01)
+    ap.add_argument("--n-steps", type=int, default=512)
+    ap.add_argument("--batch", type=int, default=256)
+    ap.add_argument("--net", type=int, default=64)
+    ap.add_argument("--lam", type=float, default=0.95)
+    a = ap.parse_args()
+    MODEL_PATH = a.model
+    {
+        "check": check, "eval": lambda: evaluate(a.episodes), "diag": diagnose,
+        "greedy": greedy_return, "funnel": funnel_cmd, "audit": ready_audit, "verify": verify,
+        "train": lambda: train(a.steps, not a.no_mix, a.p_greedy, a.window, a.save_every, a.seed, a.lr, a.lr_decay, a.ent, a.n_steps, a.batch, a.net, a.lam),
+    }[a.cmd]()
